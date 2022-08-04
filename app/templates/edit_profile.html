@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <form action="" method="POST">
+    {{ form.csrf_token() }}
+    <fieldset class="form-group">
+        <legend>Edit your Details</legend>
+        <div class="form-group">
+            {{ form.forename.label(class="form-control-label") }}
+            {% if form.forename.errors %}
+                {{ form.forename(class="form-control is-invalid") }}
+                {% for error in form.forename.errors %}
+                    <div class="invalid-feedback">
+                        <span>{{ error }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {{ form.forename(class="form-control") }}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.surname.label(class="form-control-label") }}
+            {% if form.surname.errors %}
+                {{ form.surname(class="form-control is-invalid") }}
+                {% for error in form.surname.errors %}
+                    <div class="invalid-feedback">
+                        <span>{{ error }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {{ form.surname(class="form-control") }}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.voice.label(class="form-control-label") }}
+            {% if form.voice.errors %}
+                {{ form.voice(class="form-control is-invalid") }}
+                {% for error in form.voice.errors %}
+                    <div class="invalid-feedback">
+                        <span>{{ error }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {{ form.voice(class="form-control") }}
+            {% endif %}
+        </div>
+
+        <dic class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </dic>
+
+    </fieldset>
+        </form>
+</div>
+{% endblock %}

@@ -1,0 +1,271 @@
+/* FONTS */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+/* GLOBAL STYLES */
+
+*,
+body {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+  font-family: "Roboto", sans-serif;
+}
+
+/*body {*/
+/*  max-height: 100%;*/
+/*}*/
+
+html {
+  font-size: 1rem;
+  height: 100%;
+}
+
+/* defining the root variables */
+
+:root {
+  --global-background-color: #c0bfff;
+  --transition: all 0.5s;
+}
+
+  body {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100vh 200vh 460vh 350vh 250vh 70vh;
+    background-color: #D4DDE9;
+  }
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav {
+  position: relative;
+  left: 30px;
+  width: 100%;
+  justify-content: flex-start;
+  font-weight: normal;
+  font-size: 40px;
+  color: white;
+  z-index: 100 !important;
+}
+
+  .grid,
+  body {
+    display: grid;
+    align-content: space-around;
+    justify-content: space-evenly;
+  }
+
+
+
+.landing-page {
+  position: relative;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+}
+
+
+.slide {
+    position: static;
+    height: 100%;
+    width: 100%;
+  }
+
+  .slide-text {
+    justify-items: center;
+  }
+
+  .slide-text > h1 {
+    font-weight: normal;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+  }
+
+  .slide-text > h1 > span,
+  .slide-text > h1 > b {
+    color: rgba(6, 32, 51, 0.8);
+  }
+
+  .slide-text > p {
+    position: relative;
+    font-weight: normal;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: rgba(15, 44, 45, 0.8);
+    width: 90%;
+    margin: 100px auto;
+    text-align: center;
+  }
+
+  .slide-text > p::before,
+  .slide-text > p::after {
+    position: absolute;
+    content: "";
+    height: 0.1vh;
+    width: 5vw;
+    content: "";
+    background-color: white;
+  }
+
+  .slide-text > p::before {
+    left: -3vw;
+  }
+
+  .slide-text > p::after {
+    right: -3vw;
+  }
+
+
+/* NAVBAR */
+.landing-page > nav {
+  position: fixed;
+  top: 0;
+  height: 13vh;
+  width: 100%;
+  background-color: #000000;
+  grid-template-rows: 0.99fr;
+  grid-template-columns: auto 10vw;
+  align-items: center;
+  overflow-y: hidden;
+  z-index: 9;
+  transition: var(--transition);
+}
+
+.landing-page > nav > img {
+  width: 95%;
+}
+
+
+.toggle-nav-buttons {
+    position: relative;
+    height: 50%;
+  }
+
+  .toggle-nav-buttons > svg {
+    position: absolute;
+    fill: white;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .toggle-nav-buttons > svg:nth-child(1) {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    position: absolute;
+    width: 100%;
+    top: 13vh;
+    background-color: #444444;
+    justify-content: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index:10;
+  }
+
+  .links {
+    position: relative;
+    padding-left: 10px;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 12px;
+    color: white;
+    letter-spacing: 1.3px;
+    cursor: pointer;
+  }
+
+  .links::after {
+    position: absolute;
+    content: "";
+    height: 0.03vh;
+    width: 95vw;
+    bottom: 2vh;
+    left: 2vw;
+    background-color: #444444;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+  }
+
+  .links:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: -2vh;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+
+  .nav-links-web {
+    display: none;
+  }
+
+.landing-header {
+  position: relative;
+  overflow-x: hidden;
+}
+
+  /* LOGIN FORM */
+form {
+    border: 1px solid #A5A5C4;
+    background-color: white;
+  }
+
+  /* Full-width inputs */
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  /* Set a style for all buttons */
+  button {
+    background-color: #fe7f9c;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  /* Add a hover effect for buttons */
+  button:hover {
+    opacity: 0.8;
+  }
+
+  /* Extra style for the cancel button (red) */
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+
+  /* Add padding to containers */
+  .container {
+    padding: 16px;
+  }
+
+  /* The "Forgot password" text */
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+
+
+
+
+
+
+
