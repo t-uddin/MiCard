@@ -29,7 +29,7 @@ def add_profile():
         return ("Error: ", e)
 
 
-@profile_bp.route('profile-get', methods=['GET'])
+@profile_bp.route('/profile-get', methods=['GET'])
 def get_profile():
     try:
         Profile.get(1234)
