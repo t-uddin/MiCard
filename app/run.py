@@ -1,4 +1,4 @@
-from setup_app import create_app
+from config import create_app
 
 app = create_app()
 
@@ -7,5 +7,5 @@ app = create_app()
 
 if __name__ == "__main__":
     # print(app.config["MONGO_URI"])
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
 

@@ -1,6 +1,6 @@
 from flask import Flask, current_app, g
 import mongoengine
-from flask_pymongo import PyMongo
+# from flask_pymongo import PyMongo
 # from werkzeug.local import LocalProxy
 # import bson
 import certifi

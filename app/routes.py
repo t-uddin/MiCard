@@ -1,6 +1,6 @@
 # from run import app
 from flask import render_template, redirect, url_for, request, flash, Blueprint
-import app.controllers.ProfileController as Profile
+import controllers.ProfileController as Profile
 from forms import editProfileForm
 
 main = Blueprint('main', __name__)
