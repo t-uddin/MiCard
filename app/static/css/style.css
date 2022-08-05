@@ -55,21 +55,33 @@ html {
   z-index: 100 !important;
 }
 
-  .grid,
-  body {
+.grid, body
+   {
     display: grid;
-    align-content: space-around;
+    align-content: center;
     justify-content: space-evenly;
+  /*overflow: hidden;*/
   }
 
+/*.grid*/
+/*   {*/
+/*    display: grid;*/
+/*    align-content: space-around;*/
+/*    justify-content: space-evenly;*/
+/*  }*/
 
+/*body*/
+/*   {*/
+/*    display: grid;*/
+/*    align-content: space-around;*/
+/*    justify-content: space-evenly;*/
+/*  }*/
 
 .landing-page {
   position: relative;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
 }
-
 
 .slide {
     position: static;
@@ -83,14 +95,17 @@ html {
 
   .slide-text > h1 {
     font-weight: normal;
-    font-size: 2rem;
     color: white;
     text-align: center;
+font-family: 'Prompt', sans-serif;
+    font-size: 4em;
   }
 
   .slide-text > h1 > span,
   .slide-text > h1 > b {
     color: rgba(6, 32, 51, 0.8);
+font-family: 'Prompt', sans-serif;
+
   }
 
   .slide-text > p {
@@ -231,7 +246,7 @@ form {
 
   /* Set a style for all buttons */
   button {
-    background-color: #fe7f9c;
+    background-color: #8174B2;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -265,6 +280,13 @@ form {
 
 
 
+/*  Logo */
+.brand
+{
+    /* size for brand */
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3em;
+}
 
 
 
