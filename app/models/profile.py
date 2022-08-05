@@ -50,3 +50,27 @@ class Profile(Document):
                 "registration": self.registration,
                 "voice": self.voice
             }
+
+    @classmethod
+    def get(cls):
+        ''' Takes user ID and gets details from db '''
+        return Profile.objects().first().to_dict()
+
+    def store(new_profile):
+        ''' Takes a Profile object and saves to db '''
+        try:
+            new_profile.save()
+            return "Success"
+        except Exception as e:
+            return e
+
+    # def show():
+    #     query = { "forename": "John" }
+    #     user = user_collection.find(query)
+    #     return user
+
+    # def update(userId):
+    #     ...
+
+    # def delete(userId):
+    #     ...

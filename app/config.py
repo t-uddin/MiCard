@@ -34,8 +34,11 @@ def create_app():
 
 
 def register_blueprints(app):
-    from routes.profile_bp import profile_bp
+    from controllers.profile_controller import profile_bp
     app.register_blueprint(profile_bp)
 
-    from routes.temp import main
+    from routes.pages import main
     app.register_blueprint(main)
+
+    from controllers.account_controller import account_bp
+    app.register_blueprint(account_bp)

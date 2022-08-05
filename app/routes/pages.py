@@ -1,5 +1,4 @@
 from flask import render_template, redirect, url_for, request, flash, Blueprint
-import controllers.profile_controller as Profile
 from forms import editProfileForm
 
 main = Blueprint('main', __name__)
@@ -34,22 +33,3 @@ def render_ar2():
 #     return Profile.index()
 
 
-@main.route('/editprofile/', methods=["POST", "GET"])
-def edit_profile():
-    # if request.method == "POST":
-    #     form = editProfileForm(request.form)
-    #     new_forename = form.forename.data
-    #     new_surname = form.surname.data
-    #     new_voice = form.voice.data
-    #
-    #     db.users.insert_one({
-    #         "forename": new_forename,
-    #         "surname": new_surname
-    #     })
-    #
-    #     flash("Profile successfully updated", "success")
-    #     return redirect("/")
-    # else:
-    #     form = editProfileForm()
-    #     return render_template('edit_profile.html', form=form)
-    pass

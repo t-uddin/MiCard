@@ -1,27 +1,28 @@
-# pseudo code
-# from ..models.user import User
-# from app.models.user import User
-# from db import db
-# user_collection = db['users']
-# from flask import jsonify
+from flask import render_template, redirect, url_for, request, flash, Blueprint
+from models.account import Account
+from forms import editProfileForm
+
+account_bp = Blueprint('account_bp', __name__)
+
+@account_bp.route('/editaccount/', methods=["POST", "GET"])
+def edit_account():
+    if request.method == "POST":
+        form = editProfileForm(request.form)
+        new_forename = form.forename.data
+        new_surname = form.surname.data
+        new_voice = form.voice.data
+        email ="test@email.com"
+        password_hash = "test"
+
+        account = Account(forename=new_forename, surname=new_surname, email=email, password_hash=password_hash)
+        account.save()
+
+        flash("Profile successfully updated", "success")
+        return redirect("/")
+
+    else:
+        form = editProfileForm()
+        return render_template('edit_profile.html', form=form)
+    pass
 
 
-
-def users_index():
-    # users = User.get()
-    # return jsonify({'data': users})
-    return "debug"
-# def store():
-#     # dic = {"forename": "Thamanna", "surname": "Uddin"}
-#     # x = user_collection.insert_one(dic)
-#     # print(x)
-#     pass
-#
-# def show(userId):
-#     pass
-#
-# def update(userId):
-#     pass
-#
-# def delete(userId):
-#     pass
