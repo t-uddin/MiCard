@@ -1,11 +1,11 @@
 from flask import Flask, current_app, g
 import mongoengine
-# from flask_pymongo import PyMongo
+import certifi
+from environment import mongo_host
 # from werkzeug.local import LocalProxy
 # import bson
-import certifi
-# from routes_temp.user_bp import user_bp
-#
+# from routes.user_bp import user_bp
+
 # app = Flask(__name__)
 # app.config["SECRET_KEY"] = "d18e4f677ec08636a373abcd1234"
 # app.config["MONGO_URI"] = "mongodb+srv://mongo:mongo@cluster0.q3gpfnl.mongodb.net/micard?retryWrites=true&w=majority"
@@ -21,12 +21,11 @@ import certifi
 # from app import routes
 # import app
 
-mongo_host = "mongodb+srv://mongo:mongo@cluster0.q3gpfnl.mongodb.net/micard?retryWrites=true&w=majority"
 mongoengine.connect(host=mongo_host, tlsCAFile=certifi.where())
 
 def create_app():
     app = Flask(__name__)
-    # app.config["MONGO_URI"] = "mongodb+srv://mongo:mongo@cluster0.q3gpfnl.mongodb.net/micard?retryWrites=true&w=majority"
+    # app.config["MONGO_URI"] = mongo_host
     app.config["SECRET_KEY"] = "d18e4f677ec08636a373abcd1234"
 
     register_blueprints(app)
@@ -35,8 +34,8 @@ def create_app():
 
 
 def register_blueprints(app):
-    from routes_temp.user_bp import user_bp
-    app.register_blueprint(user_bp)
+    from routes.profile_bp import profile_bp
+    app.register_blueprint(profile_bp)
 
-    from routes import main
+    from routes.temp import main
     app.register_blueprint(main)

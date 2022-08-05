@@ -1,9 +1,15 @@
 from flask import Blueprint
-# from controllers.UserController import index
-# from ..controllers.UserController import index, store, show, update, delete
+from controllers.profile_controller import get, store
+from models.profile import Profile
 
-user_bp = Blueprint('user_bp', __name__)
-# user_bp.route('/', methods=['GET'])(index)
+profile = Profile
+
+
+profile_bp = Blueprint('user_bp', __name__)
+
+profile_bp.route('/profile-get', methods=['GET'])(get)
+profile_bp.route('/adduser', methods=['GET'])(store)
+
 # user_bp.route('/create', methods=['POST'])(store)
 # user_bp.route('/<int:user_id>', methods=['GET'])(show)
 # user_bp.route('/<int:user_id>/edit', methods=['POST'])(update)
