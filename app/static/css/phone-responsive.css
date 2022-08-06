@@ -1,4 +1,4 @@
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 450px) {
 
 
     /* Change login form styles for span and cancel button on extra small screens */
@@ -12,5 +12,10 @@
 
 
 
+  .landing-page {
+      border: 20px solid transparent;
   }
+
+
+}
 
