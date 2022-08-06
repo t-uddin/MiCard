@@ -27,6 +27,10 @@ def render_ar():
 def render_ar2():
     return render_template('ar-iframe.html')
 
+@main.route('/inherit/')
+def render_nnjar2():
+    return render_template('inherit.html')
+
 
 # @main.route('/getprofile/')
 # def profile_get():

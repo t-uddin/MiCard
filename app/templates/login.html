@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/mini-tablet-responsive.css">
-    <link rel="stylesheet" href="../static/css/tablet-responsive.css">
-    <link rel="stylesheet" href="../static/css/small-laptop-responsive.css">
-    <link rel="stylesheet" href="../static/css/laptop-responsive.css">
-    <link rel="stylesheet" href="../static/css/phone-responsive.css">
-</head>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <!-- Allow web app to be run in full-screen mode. -->
+        <meta name="apple-mobile-web-app-capable"
+        content="yes">
+
+        <!-- Configure the status bar. -->
+        <meta name="apple-mobile-web-app-status-bar-style"
+        content="black">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/mini-tablet-responsive.css">
+        <link rel="stylesheet" href="../static/css/tablet-responsive.css">
+        <link rel="stylesheet" href="../static/css/laptop-responsive.css">
+        <link rel="stylesheet" href="../static/css/phone-responsive.css">
+
+        <!-- hamburger icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <title>MiCard Login</title>
 
 <body>
-    <section class="landing-page grid">
+    <section class="landing-page">
+      <div class = "brand">
+                 <br>
 
-                <div class="slide slide-1 grid">
-                    <div class="slide-text grid">
-                        <h1 class="brand">Mi<b>Card</b><br>
-                            </h1>
-                    </div>
-                </div>
-
-    <form action="" method="post" style="margin: 8px">
+                <h1>Mi<b>Card</b><br></h1>
+      </div>
+        <br>
+        <br>
+    <form action="" method="post">
         <div class="container">
-          <label for="uname"><b>Username</b></label>
+{#          <label for="uname"><b>Username:</b></label>#}
           <input type="text" placeholder="Enter Username" name="uname" required>
 
-          <label for="psw"><b>Password</b></label>
+{#          <label for="psw"><b>Password:</b></label>#}
           <input type="password" placeholder="Enter Password" name="psw" required>
+            <br>
 
-          <button type="submit">Login</button>
-          <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-          </label>
+          <button type="button" class="btn btn-info btn-lg">Login</button>
+{#          <label>#}
+{#            <input type="checkbox" checked="checked" name="remember"> Remember me#}
+{#          </label>#}
+
         </div>
 
-        <div class="container">
-          <button type="button" class="cancelbtn">Cancel</button>
-          <span class="psw">Forgot <a href="#">password?</a></span>
-        </div>
+{#        <div class="container">#}
+{#          <button type="button" class="cancelbtn">Cancel</button>#}
+{#          <span class="psw">Forgot <a href="#">password?</a></span>#}
+{#        </div>#}
+
       </form>
-</div>
-        <div class="container">
-                      <button type="submit">Don't have an account? Click here to sign up.</button>
-        </div>
+                    <p>Don't have an account? <a href="register_account.html">Click here to register.</a></p>
+
+
     </section>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -41,6 +41,9 @@ html {
     background-color: #D4DDE9;
   }
 
+  p {
+    text-align: center;
+  }
 .flex {
   display: flex;
   align-items: center;
@@ -192,14 +195,22 @@ html {
 form {
     /*border: 1px solid #A5A5C4;*/
     /*background-color: white;*/
+
   }
+
+.container {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
   /* Full-width inputs */
   input[type=text], input[type=password] {
-    width: auto;
+    width: 100%;
     padding: 10px 20px;
     margin: 8px 0;
-    display: inline-block;
+    display: grid;
     border: 1px solid #ccc;
     box-sizing: border-box;
   }
@@ -220,7 +231,7 @@ form {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 250px;
   }
 
   /* Add a hover effect for buttons */
@@ -273,6 +284,7 @@ form {
 .topnav a:hover {
   background-color: #ddd;
   color: black;
+  border-radius: 90px;
 }
 
 /* Add an active class to highlight the current page */
@@ -336,7 +348,7 @@ form {
   }
 
 .brand{
-      font-size: 3em;
+      font-size: 200%;
 }
 
   .brand-nav > h1 {
@@ -376,18 +388,18 @@ form {
   .brand > p::after {
     position: absolute;
     content: "";
-    height: 0.1vh;
+    height: 0.2vh;
     width: 5vw;
     content: "";
     background-color: white;
   }
 
   .brand > p::before {
-    left: -3vw;
+    left: -5vw;
   }
 
   .brand > p::after {
-    right: -3vw;
+    right: -5vw;
   }
 
   /*index page*/
@@ -397,8 +409,12 @@ form {
 }
 
 .btn-info:hover {
-  background-color: #3e4ef8;
+    background-color: #989dd6;
 }
+.btn-light {
+  background-color: #7581fa;
+}
+
 
 
 /* login page */
