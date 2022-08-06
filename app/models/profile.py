@@ -52,9 +52,16 @@ class Profile(Document):
             }
 
     @classmethod
-    def get(cls):
+    def get(cls, userid):
         ''' Takes user ID and gets details from db '''
-        return Profile.objects().first().to_dict()
+        try:
+            profile = Profile.objects(id=userid).first().to_dict()
+            return profile
+
+        except Exception as e:
+            return e
+
+        # return Profile.objects().first().to_dict()
 
     def store(new_profile):
         ''' Takes a Profile object and saves to db '''
@@ -64,10 +71,7 @@ class Profile(Document):
         except Exception as e:
             return e
 
-    # def show():
-    #     query = { "forename": "John" }
-    #     user = user_collection.find(query)
-    #     return user
+
 
     # def update(userId):
     #     ...

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="brand container">
+    <br>
+    <h2>My Profile.</h2>
+
+    <h3>Bio</h3>
+        <p>{{ profile.bio }}</p>
+
+    <h3>Contact email</h3>
+        <p>{{ profile.contact_email }}</p>
+
+    <h3>Job Title</h3>
+        <p>{{ profile.job_title }}</p>
+
+    <h3>Phone</h3>
+        <p>{{ profile.phone }}</p>
+
+    <h3>Working Hours</h3>
+        <p>{{ profile.working_hours }}</p>
+
+    <h3>Location</h3>
+        <p>{{ profile.location }}</p>
+
+    <h3>Field</h3>
+        <p>{{ profile.field }}</p>
+
+    <h3>Registration</h3>
+        <p>{{ profile.registration }}</p>
+
+    <h3>Years of Experience</h3>
+        <p>{{ profile.exp_years }}</p>
+
+    <h3>Consultation Fee</h3>
+        <p>{{ profile.cons_fee }}</p>
+
+    <h3>Specialisms</h3>
+        {% for specialism in profile.specialisms %}
+            <li>{{ specialism }}</li>
+        {% endfor %}
+
+    <h3>Treatments</h3>
+        {% for treatment in profile.treatments %}
+            <li>{{ treatment }}</li>
+        {% endfor %}
+
+    <h3>Certifications</h3>
+        {% for certification in profile.certification %}
+            <li>{{ certification }}</li>
+        {% endfor %}
+
+  <h3>Education</h3>
+        {% for item in profile.education %}
+            <li>{{ item }}</li>
+        {% endfor %}
+
+  <h3>Interests</h3>
+        {% for interest in profile.interests %}
+            <li>{{ interest }}</li>
+        {% endfor %}
+    <br>
+    <br>
+    <a href="../profile-edit"><button type="button" class="btn btn-info btn-lg">Edit Details</button></a>
+    <br>
+    <br>
+
+
+</div>
+
+
+{#    need edit profile button, change password button, and print details #}
+
+{% endblock %}
