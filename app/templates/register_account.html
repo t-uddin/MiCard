@@ -1,10 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Allow web app to be run in full-screen mode. -->
+    <meta name="apple-mobile-web-app-capable"
+    content="yes">
+
+    <!-- Configure the status bar. -->
+    <meta name="apple-mobile-web-app-status-bar-style"
+    content="black">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/mini-tablet-responsive.css">
+    <link rel="stylesheet" href="../static/css/tablet-responsive.css">
+    <link rel="stylesheet" href="../static/css/laptop-responsive.css">
+    <link rel="stylesheet" href="../static/css/phone-responsive.css">
+
+    <!-- hamburger icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>MiCard Login</title>
 </head>
 <body>
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+      <div class = "brand">
+          <br>
+          <h1>Mi<b>Card</b><br></h1>
+        <br>
+        <br>
+    {{ form.hidden_tag() }}
+    <form action="" method="post">
+            <!-- Forename -->
+            <div class="form-group">
+{#              {{ form.forename.label() }}#}
+              {{ form.forename(class="form-control text-center", placeholder=form.forename.description) }}
+              {% for error in form.forename.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <!-- Surname -->
+            <div class="form-group">
+{#              {{ form.surname.label() }}#}
+              {{ form.surname(class="form-control text-center", placeholder=form.surname.description) }}
+              {% for error in form.surname.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+{#              {{ form.email.label() }}#}
+              {{ form.email(class="form-control text-center", placeholder=form.email.description) }}
+              {% for error in form.email.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+{#              {{ form.password.label() }}#}
+              {{ form.password(class="form-control text-center", placeholder=form.password.description) }}
+              {% for error in form.password.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <div class="form-group">
+{#              {{ form.confirm_psw.label() }}#}
+              {{ form.confirm_psw(class="form-control text-center", placeholder=form.confirm_psw.description) }}
+              {% for error in form.confirm_psw.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <!-- Submit -->
+    <a href="/"><button type="button" class="btn btn-primary btn-lg">Back</button></a>
+            {{ form.submit(class="btn btn-info btn-lg") }}
+      </form>
+      </div>
+
+
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</main>
+
 
 </body>
 </html>

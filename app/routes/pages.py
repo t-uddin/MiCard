@@ -10,6 +10,7 @@ def render_home():
 
 @main.route('/')
 def index():
+    # TODO: if logged in send to home else send to index
     return render_template('index.html')
 
 
@@ -27,9 +28,11 @@ def render_ar():
 def render_ar2():
     return render_template('ar-iframe.html')
 
-@main.route('/inherit/')
-def render_nnjar2():
-    return render_template('inherit.html')
+
+
+# @main.route('/inherit/')
+# def render_nnjar2():
+#     return render_template('inherit.html')
 
 
 # @main.route('/getprofile/')
