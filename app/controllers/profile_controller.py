@@ -35,13 +35,6 @@ def get_profile():
     try:
         userid = "62e6ffd3d1d8472cf1002c4a"
         profile = Profile.get(userid)
-        # store(profile)
-
-        sp_list = profile["specialisms"]
-        print("Hi", sp_list)
-        # print(type(profile.specialisms))
-
-
 
         return render_template('profile.html', profile=profile)
 
