@@ -340,7 +340,6 @@ form {
 .brand, .brand-nav
 {
     font-weight: normal;
-    color: white;
     text-align: center;
     font-family: 'Prompt', sans-serif;
     justify-items: center;
@@ -354,12 +353,16 @@ form {
     text-align: center;
     font-family: 'Prompt', sans-serif;
     font-size: 2.5em;
+        color: white;
+
   }
 
   .brand > h1 {
     text-align: center;
     font-family: 'Prompt', sans-serif;
     font-size: 2.5em;
+    color: white;
+
   }
 
   .brand > h2 {
@@ -379,19 +382,19 @@ form {
   font-family: 'Prompt', sans-serif;
     }
 
-  .brand > h3 {
+h3 {
     position: relative;
     font-weight: normal;
     font-size: 30px;
     letter-spacing: 1px;
     color: rgba(15, 44, 45, 0.8);
     width: 90%;
-    margin: 40px auto;
+    margin: 35px auto;
     text-align: center;
   }
 
-  .brand > h3::before,
-  .brand > h3::after {
+h3::before,
+h3::after {
     position: absolute;
     content: "";
     height: 0.2vh;
@@ -400,15 +403,15 @@ form {
     background-color: white;
   }
 
-  .brand > h3::before {
-    left: -5vw;
+h3::before {
+    left: -6vw;
   }
 
-  .brand > h3::after {
-    right: -5vw;
+h3::after {
+    right: -6vw;
   }
 
-  .brand > p, li {
+p, li {
     text-align: center;
     font-size: 20px;
     color: black;
@@ -458,5 +461,13 @@ footer {
 /*left: 8px;*/
 /*right: 8px;*/
 
+}
+
+textarea {
+  max-width: 100%;
+}
+
+input {
+  max-width: 100%;
 }
 

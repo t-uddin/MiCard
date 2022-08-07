@@ -26,7 +26,7 @@ class Profile(Document):
     consultation_fee = StringField(required=False)
     treatments = ListField(required=False)
     registration = StringField(required=False)
-    voice = StringField(required=True)
+    voice = StringField()
     meta = {"collection": "profiles"}
 
 
@@ -56,6 +56,10 @@ class Profile(Document):
         ''' Takes user ID and gets details from db '''
         try:
             profile = Profile.objects(id=userid).first().to_dict()
+            #
+            # sp = profile.treatments
+            # print(type(sp))
+
             return profile
 
         except Exception as e:

@@ -5,7 +5,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/layout')
 def render_home():
-    return render_template('inherit.html', title="LAYOUT")
+    return render_template('inherit.html', title="")
 
 
 @main.route('/')

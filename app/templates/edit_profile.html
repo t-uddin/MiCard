@@ -1,57 +1,191 @@
 {% extends "layout.html" %}
 {% block content %}
-<div>
-    <form action="" method="POST">
-    {{ form.csrf_token() }}
-    <fieldset class="form-group">
-        <legend>Edit your Details</legend>
-        <div class="form-group">
-            {{ form.forename.label(class="form-control-label") }}
-            {% if form.forename.errors %}
-                {{ form.forename(class="form-control is-invalid") }}
-                {% for error in form.forename.errors %}
-                    <div class="invalid-feedback">
-                        <span>{{ error }}</span>
-                    </div>
-                {% endfor %}
-            {% else %}
-                {{ form.forename(class="form-control") }}
-            {% endif %}
+{#<div>#}
+{#    <form action="" method="POST">#}
+{#    {{ form.csrf_token() }}#}
+{#    <fieldset class="form-group">#}
+{#        <legend>Edit your Details</legend>#}
+{#        <div class="form-group">#}
+{#            {{ form.forename.label(class="form-control-label") }}#}
+{#            {% if form.forename.errors %}#}
+{#                {{ form.forename(class="form-control is-invalid") }}#}
+{#                {% for error in form.forename.errors %}#}
+{#                    <div class="invalid-feedback">#}
+{#                        <span>{{ error }}</span>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            {% else %}#}
+{#                {{ form.forename(class="form-control") }}#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#        <div class="form-group">#}
+{#            {{ form.surname.label(class="form-control-label") }}#}
+{#            {% if form.surname.errors %}#}
+{#                {{ form.surname(class="form-control is-invalid") }}#}
+{#                {% for error in form.surname.errors %}#}
+{#                    <div class="invalid-feedback">#}
+{#                        <span>{{ error }}</span>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            {% else %}#}
+{#                {{ form.surname(class="form-control") }}#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#        <div class="form-group">#}
+{#            {{ form.voice.label(class="form-control-label") }}#}
+{#            {% if form.voice.errors %}#}
+{#                {{ form.voice(class="form-control is-invalid") }}#}
+{#                {% for error in form.voice.errors %}#}
+{#                    <div class="invalid-feedback">#}
+{#                        <span>{{ error }}</span>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            {% else %}#}
+{#                {{ form.voice(class="form-control") }}#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#        <dic class="form-group">#}
+{#            {{ form.submit(class="btn btn-outline-info") }}#}
+{#        </dic>#}
+{##}
+{#    </fieldset>#}
+{#        </form>#}
+{#</div>#}
+
+<div class="brand">
+    <br>
+    <h2>Edit Profile.</h2>
+      <form action="/profile-edit" method="post" id="editprofile">
+
+
+    <h3>Bio</h3>
+          <div class="form-group">
+              <textarea form="editprofile" class="form-control" name="new_bio" cols="100" rows="5">{{ profile.bio }}
+              </textarea>
         </div>
 
-        <div class="form-group">
-            {{ form.surname.label(class="form-control-label") }}
-            {% if form.surname.errors %}
-                {{ form.surname(class="form-control is-invalid") }}
-                {% for error in form.surname.errors %}
-                    <div class="invalid-feedback">
-                        <span>{{ error }}</span>
-                    </div>
-                {% endfor %}
-            {% else %}
-                {{ form.surname(class="form-control") }}
-            {% endif %}
+    <h3>Contact email</h3>
+          <div class="form-group">
+            <input class="form-control" name="new_email" value="{{ profile.contact_email }}" type="email">
+          </div>
+
+    <h3>Job Title</h3>
+          <div class="form-group">
+              <input class="form-control" name="new_title" value="{{ profile.job_title }}" type="text">
+          </div>
+
+    <h3>Phone</h3>
+          <div class="form-group">
+            <input class="form-control" name="new_phone" value="{{ profile.phone }}" type="tel">
+          </div>
+
+    <h3>Working Hours</h3>
+          <div class="form-group">
+            <input class="form-control" name="new_hours" value="{{ profile.working_hours }}" type="text">
         </div>
 
-        <div class="form-group">
-            {{ form.voice.label(class="form-control-label") }}
-            {% if form.voice.errors %}
-                {{ form.voice(class="form-control is-invalid") }}
-                {% for error in form.voice.errors %}
-                    <div class="invalid-feedback">
-                        <span>{{ error }}</span>
-                    </div>
-                {% endfor %}
-            {% else %}
-                {{ form.voice(class="form-control") }}
-            {% endif %}
-        </div>
+    <h3>Location</h3>
+          <div class="form-group">
+            <input class="form-control" name="new_location" value="{{ profile.location }}" type="text">
+          </div>
 
-        <dic class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
-        </dic>
+    <h3>Field</h3>
+                <div class="form-group">
+            <input class="form-control" name="new_field" value="{{ profile.field }}" type="text">
+          </div>
 
-    </fieldset>
-        </form>
+
+    <h3>Registration</h3>
+          <div class="form-group">
+              <input class="form-control" name="new_registration" value="{{ profile.registration }}" type="text">
+          </div>
+
+    <h3>Years of Experience</h3>
+          <div class="form-group">
+              <input class="form-control" name="new_years" value="{{ profile.exp_years }}" type="number">
+          </div>
+
+    <h3>Consultation Fee</h3>
+          <div class="form-group">
+              <input class="form-control" name="new_fee" value="{{ profile.cons_fee }}" type="number">
+          </div>
+
+    <h3>Specialisms</h3>
+            <div class="form-group">
+                {% for specialism in profile.specialisms %}
+                    <input class="form-control" name="new_specialisms" value="{{ specialism }}" type="text">
+{#                 {{ specialisms_list.append(specialism) }}#}
+
+{#                TODO: delete and add buttons#}
+                <img src="../static/bin.png" width="20" height="20" onclick="deleteSpecialism({{ loop.index }});" />
+
+{#                <div style="position: absolute; left: 10px; top: 40px;"> #}
+{#                <img src="logg.png" width="114" height="38" onclick="DoSomething();" />#}
+{#                 </div>#}
+                        {% endfor %}
+
+            </div>
+
+{#            <ol>#}
+{#            <li><input type="text" value="Foo"></li>#}
+{#            <li><input type="text" value="Bar"></li>#}
+{#            <li><input type="text" value="Baz"></li>#}
+{#            <li><input type="text" value="Qux"></li>#}
+{#          </ol>#}
+
+    <h3>Treatments</h3>
+          {% for treament in profile.treatments %}
+            <div class="form-group">
+            <input class="form-control" name="new_treatments" value="{{ treatment }}" type="text">
+{#                TODO: delete and add buttons#}
+{#                TODO: edge case when they dont have anything#}
+            </div>
+          {% endfor %}
+
+
+
+    <h3>Certifications</h3>
+          {% for certification in profile.certifications %}
+            <div class="form-group">
+            <input class="form-control" name="new_certifications" value="{{ certification }}" type="text">
+{#                TODO: delete and add buttons#}
+{#                TODO: edge case when they dont have anything#}
+            </div>
+          {% endfor %}
+
+  <h3>Education</h3>
+        {% for item in profile.education %}
+                    <div class="form-group">
+            <input class="form-control" name="new_education" value="{{ item }}" type="text" size="500">
+{#                TODO: delete and add buttons#}
+{#                TODO: edge case when they dont have anything#}
+            </div>
+        {% endfor %}
+
+  <h3>Interests</h3>
+        {% for interest in profile.interests %}
+                                <div class="form-group">
+            <input class="form-control" name="new_interests" value="{{ interest }}" type="text">
+{#                TODO: delete and add buttons#}
+{#                TODO: edge case when they dont have anything#}
+            </div>
+        {% endfor %}
+    <br>
+    <br>
+
+
+
+        <button class="btn btn-primary" type="submit">Save Changes</button>
+      </form>
+
+
 </div>
+
+
+
+
+
 {% endblock %}
