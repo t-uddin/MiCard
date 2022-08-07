@@ -110,79 +110,122 @@
 
     <h3>Consultation Fee</h3>
           <div class="form-group">
-              <input class="form-control" name="new_fee" value="{{ profile.cons_fee }}" type="number">
+              <p>£ <input class="form-control" name="new_fee" value="{{ profile.cons_fee }}" type="number"></p>
           </div>
 
     <h3>Specialisms</h3>
             <div class="form-group">
+                        {% if not profile.specialisms %}
+                <div id="specialisms">
+                    <input class="form-control" name="new_specialisms" placeholder="Add a Specialism" type="text">
+                </div>
+            {% else %}
                 {% for specialism in profile.specialisms %}
-                    <input class="form-control" name="new_specialisms" value="{{ specialism }}" type="text">
-{#                 {{ specialisms_list.append(specialism) }}#}
+                    <div id="specialisms">
+                        <input class="form-control" name="new_specialisms" value="{{ specialism }}" type="text">
+{#                        <img class="img_button" src="../static/img/bin.png" width="20" height="20" onclick="deleteSpecialism();" />#}
+                    </div>
+                {% endfor %}
+                        {% endif %}
 
-{#                TODO: delete and add buttons#}
-                <img src="../static/bin.png" width="20" height="20" onclick="deleteSpecialism({{ loop.index }});" />
-
-{#                <div style="position: absolute; left: 10px; top: 40px;"> #}
-{#                <img src="logg.png" width="114" height="38" onclick="DoSomething();" />#}
-{#                 </div>#}
-                        {% endfor %}
+                <div class="new_specialisms"></div>
+                <img class="img_button" src="../static/img/add.png" onclick="addSpecialism();" />
 
             </div>
 
-{#            <ol>#}
-{#            <li><input type="text" value="Foo"></li>#}
-{#            <li><input type="text" value="Bar"></li>#}
-{#            <li><input type="text" value="Baz"></li>#}
-{#            <li><input type="text" value="Qux"></li>#}
-{#          </ol>#}
 
     <h3>Treatments</h3>
-          {% for treament in profile.treatments %}
-            <div class="form-group">
-            <input class="form-control" name="new_treatments" value="{{ treatment }}" type="text">
-{#                TODO: delete and add buttons#}
-{#                TODO: edge case when they dont have anything#}
-            </div>
-          {% endfor %}
+          <div class="form-group">
+            {% if not profile.treatments %}
+                <div id="treatments">
+                    <input class="form-control" name="new_treatments" placeholder="Add a treatment" type="text">
+                </div>
+            {% else %}
+                {% for treament in profile.treatments %}
+                    <div id="treatments">
+                    <input class="form-control" name="new_treatments" value="{{ treatment }}" type="text">
+    {#                TODO: delete and add buttons#}
+    {#                TODO: edge case when they dont have anything#}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+              <div class="new_treatments"></div>
+              <img class="img_button" src="../static/img/add.png" onclick="addTreatment();" />
+
+          </div>
 
 
 
     <h3>Certifications</h3>
+          <div class="form-group">
+            {% if not profile.certifications %}
+                <div id="certifications">
+                    <input class="form-control" name="new_certifications" placeholder="Add a certification" type="text">
+                </div>
+            {% else %}
           {% for certification in profile.certifications %}
-            <div class="form-group">
-            <input class="form-control" name="new_certifications" value="{{ certification }}" type="text">
+              <div id="certifications">
+                <input class="form-control" name="new_certifications" value="{{ certification }}" type="text">
 {#                TODO: delete and add buttons#}
 {#                TODO: edge case when they dont have anything#}
-            </div>
+              </div>
+
+
           {% endfor %}
+                      {% endif %}
+
+               <div class="new_certifications"></div>
+              <img class="img_button" src="../static/img/add.png" onclick="addCertification();" />
+      </div>
 
   <h3>Education</h3>
-        {% for item in profile.education %}
-                    <div class="form-group">
-            <input class="form-control" name="new_education" value="{{ item }}" type="text" size="500">
-{#                TODO: delete and add buttons#}
-{#                TODO: edge case when they dont have anything#}
-            </div>
-        {% endfor %}
+          <div class="form-group">
+              {% if not profile.education %}
+                <div id="education">
+                    <input class="form-control" name="new_education" placeholder="Add education" type="text">
+                </div>
+            {% else %}
+              {% for item in profile.education %}
+                  <div id="education">
+                      <input class="form-control" name="new_education" value="{{ item }}" type="text" size="500">
+    {#                TODO: delete and add buttons#}
+    {#                TODO: edge case when they dont have anything#}
+                    </div>
+            {% endfor %}
+                      {% endif %}
+
+               <div class="new_education"></div>
+              <img class="img_button" src="../static/img/add.png" onclick="addEducation();" />
+      </div>
+
 
   <h3>Interests</h3>
+          <div class="form-group">
+                      {% if not profile.interests %}
+                <div id="interests">
+                    <input class="form-control" name="new_interests" placeholder="Add an interest" type="text">
+                </div>
+            {% else %}
         {% for interest in profile.interests %}
-                                <div class="form-group">
+            <div id="interests">
             <input class="form-control" name="new_interests" value="{{ interest }}" type="text">
 {#                TODO: delete and add buttons#}
 {#                TODO: edge case when they dont have anything#}
             </div>
         {% endfor %}
+                      {% endif %}
+
+               <div class="new_interests"></div>
+              <img class="img_button" src="../static/img/add.png" onclick="addInterest();" />
+          </div>
     <br>
     <br>
 
-
-
-        <button class="btn btn-primary" type="submit">Save Changes</button>
+        <button class="btn btn-info btn-lg" type="submit">Save Changes</button>
       </form>
 
-
-</div>
+</form>
 
 
 

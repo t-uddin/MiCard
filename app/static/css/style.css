@@ -463,11 +463,23 @@ footer {
 
 }
 
+
+/* EDIT PROFILE ------------------------------------------------------------------------------------- */
 textarea {
   max-width: 100%;
 }
 
 input {
   max-width: 100%;
+  font-size: 20px;
 }
 
+/* make images appear as buttons when hovered */
+.img_button {
+  cursor:pointer;
+}
+
+/*!* format dynamically added inputs to match existing *!*/
+/*.input_js {*/
+/*  */
+/*}*/

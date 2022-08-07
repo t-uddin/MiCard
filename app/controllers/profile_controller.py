@@ -98,7 +98,7 @@ def get_edit_profile():
         #     new_interests = request.form.get("new_interests")
 
 
-        # Create profile object with new details and update db
+        # Create profile object with new details
         updated_profile = Profile(
             id="62e6ffd3d1d8472cf1002c4a",
             bio=request.form.get("new_bio"),
@@ -112,12 +112,20 @@ def get_edit_profile():
             years_experience=request.form.get("new_years"),
             consultation_fee=request.form.get("new_fee"),
             specialisms=request.form.getlist("new_specialisms"),
-            treatments=request.form.get("new_treatments"),
+            treatments=request.form.getlist("new_treatments"),
             certifications=request.form.getlist("new_certifications"),
             education=request.form.getlist("new_education"),
             interests=request.form.getlist("new_interests"),
             account="62e6f4e8d1d8472cf1002c40")
 
+        # remove empty list items
+        updated_profile['specialisms'] = list(filter(len, updated_profile['specialisms']))
+        updated_profile['treatments'] = list(filter(len, updated_profile['treatments']))
+        updated_profile['certifications'] = list(filter(len, updated_profile['certifications']))
+        updated_profile['education'] = list(filter(len, updated_profile['education']))
+        updated_profile['interests'] = list(filter(len, updated_profile['interests']))
+
+        # update db
         updated_profile.save()
 
         # redirect to profile page
