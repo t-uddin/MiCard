@@ -65,7 +65,7 @@ def login_and_redirect(account):
     """Logs in user, flashes welcome message and redirects to index"""
     login_user(account)
     flash(f"Welcome {account.forename}!", category="success")
-    return redirect("../profile")
+    return redirect("../home")
 
 
 @account_bp.route('/login/', methods=["GET", "POST"])

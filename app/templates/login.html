@@ -1,6 +1,7 @@
 {% extends "layout_nonav.html" %}
 {% block content %}
-<div class="brand container">
+
+<div class="brand">
     <br>
     <h1>Mi<b>Card</b><br></h1>
     <br>
@@ -9,35 +10,25 @@
         {{ form.csrf_token }}
 
         <div class="form-group">
-{#          <label for="uname"><b>Username:</b></label>#}
-{#          <input type="text" placeholder="Enter Email" name="email" required>#}
-      {{ form.email(class="form-control text-center", placeholder=form.email.description) }}
-      {% for error in form.email.errors %}
-        <p style="color: red">{{ error }}</p>
-      {% endfor %}
-    </div>
-
-{#          <label for="psw"><b>Password:</b></label>#}
-{#          <input type="password" placeholder="Enter Password" name="psw" required>#}
-{#            <br>#}
+          {{ form.email(class="form-control text-center", placeholder=form.email.description) }}
+          {% for error in form.email.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
 
         <div class="form-group">
-      {{ form.password(class="form-control text-center", placeholder=form.password.description) }}
-      {% for error in form.password.errors %}
-        <p style="color: red">{{ error }}</p>
-      {% endfor %}
-    </div>
+          {{ form.password(class="form-control text-center", placeholder=form.password.description) }}
+          {% for error in form.password.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
 
         {{ form.submit(class="btn btn-info btn-lg") }}
 
-          </form>
-{#          <button type="button" class="btn btn-info btn-lg">Login</button>#}
-{#          <label>#}
-{#            <input type="checkbox" checked="checked" name="remember"> Remember me#}
-{#          </label>#}
-            <br>
-                    <p>Don't have an account? <a href="../register">Click here to register.</a></p>
+    </form>
 
+    <br>
+    <p>Don't have an account? <a href="../register">Click here to register.</a></p>
 
 </div>
 

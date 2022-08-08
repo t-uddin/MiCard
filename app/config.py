@@ -41,7 +41,7 @@ def create_app():
 
     # initialize login manager
     login_manager.init_app(app)
-    login_manager.login_view = "users.login"
+    login_manager.login_view = "account_bp.login"
 
     return app
 

@@ -3,15 +3,19 @@
 <div class="brand container text-center">
     {% if current_user.is_authenticated %}
 <br>
-    <h1>Welcome {{ current_user.forename }}.</h1>
-    <h2>What would you like to do?</h2>
+    <h2>Welcome {{ current_user.forename }}.</h2>
+    <h3>What would you like to do?</h3>
 
     <hr class="my-4">
 {#      <p>Email: {{ current_user.email }}</p>#}
 {#      <p>{{ current_user.password_hash }}</p>#}
 
+        <a href="profile"><button type="button" class="btn btn-dark btn-lg">View Profile</button></a>
+        <a href="avatar"><button type="button" class="btn btn-dark btn-lg">View my Mi</button></a>
+        <a href="ar"><button type="button" class="btn btn-dark btn-lg">Scan a Card</button></a>
+
     {% else %}
-      <h2>You are not logged in.</h2>
+     <br><br><br><h2>You are not logged in.</h2>
     {% endif %}
   </div>
 {% endblock content %}

@@ -437,7 +437,8 @@ form {
 .btn-info:hover {
     background-color: #989dd6;
 }
-.btn-light {
+
+.btn-dark:hover {
   background-color: #7581fa;
 }
 
