@@ -13,10 +13,15 @@ def index():
     # TODO: if logged in send to home else send to index
     return render_template('index.html')
 
+@main.route('/home')
+def home():
+    # TODO: if logged in send to home else send to index
+    return render_template('home.html')
 
-@main.route('/login/')
-def render_login():
-    return render_template('login.html')
+
+# @main.route('/login/')
+# def render_login():
+#     return render_template('login.html')
 
 
 @main.route('/ar/')

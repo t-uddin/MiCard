@@ -1,1 +1,17 @@
-{#when user logs in to account#}
+{% extends "layout.html" %}
+{% block content %}
+<div class="brand container text-center">
+    {% if current_user.is_authenticated %}
+<br>
+    <h1>Welcome {{ current_user.forename }}.</h1>
+    <h2>What would you like to do?</h2>
+
+    <hr class="my-4">
+{#      <p>Email: {{ current_user.email }}</p>#}
+{#      <p>{{ current_user.password_hash }}</p>#}
+
+    {% else %}
+      <h2>You are not logged in.</h2>
+    {% endif %}
+  </div>
+{% endblock content %}
