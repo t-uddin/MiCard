@@ -28,10 +28,8 @@ def safe_string():
 
 
 def unique_or_current_user_field(message=None):
-    """Validates that a field is either equal to the user's current field
+    """Validates that email field is either equal to the user's current field
     or doesn't exist in the database
-
-    Used for username and email fields
     """
 
     def validation(form, field):

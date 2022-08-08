@@ -1,24 +1,23 @@
-from flask import render_template, redirect, url_for, request, flash, Blueprint
+from flask import render_template, redirect, request, flash, Blueprint
 from models.account import Account
 from forms import editProfileForm, RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user, login_required
 
-
-
 account_bp = Blueprint('account_bp', __name__)
+
 
 @account_bp.route('/editaccount/', methods=["POST", "GET"])
 def edit_account():
     if request.method == "POST":
+        userid ="TODO"
         form = editProfileForm(request.form)
         new_forename = form.forename.data
         new_surname = form.surname.data
-        new_voice = form.voice.data
-        email ="test@email.com"
+        email = "test"
         password_hash = "test"
 
-        account = Account(forename=new_forename, surname=new_surname, email=email, password_hash=password_hash)
+        account = Account(id=userid, forename=new_forename, surname=new_surname, email=email, password_hash=password_hash)
         account.save()
 
         flash("Profile successfully updated", "success")
@@ -33,39 +32,42 @@ def edit_account():
 @account_bp.route('/register/', methods=["GET", "POST"])
 def register():
     """Registers the user with username, email and password hash in database"""
+
+    logout_user()
     form = RegistrationForm()
 
     if request.method == "POST":
-        print("1")
-        logout_user()
-        print("2")
-        if form.validate_on_submit():
-            print("3")
+        # Ensure password and confirm password matches
+        if form.password.data != form.confirm_psw.data:
+            flash("Passwords do not match.", category="error")
+            return redirect("../register")
+
+        # Ensure email is not already registered
+        elif Account.get(form.email.data) is not None:
+            flash("An account already exists with this email", category="error")
+            return redirect("../register")
+
+        elif form.validate_on_submit():
             password_hash = generate_password_hash(form.password.data)
-            print("4", password_hash)
             account = Account(
                 email=form.email.data,
                 forename=form.forename.data,
                 surname=form.surname.data,
                 password_hash=password_hash,
             )
-            print("5", account)
             account.save()
-            print("success")
+
             flash("Thanks for registering!", category="success")
-            return login_and_redirect(account)
+
+            login_user(account)
+            return redirect("../home")
+
         else:
-            return "Error Occurred."
+            flash("An error occurred", category="error")
+            return redirect("../register")
 
     else:
         return render_template('register_account.html', form=form)
-
-
-def login_and_redirect(account):
-    """Logs in user, flashes welcome message and redirects to index"""
-    login_user(account)
-    flash(f"Welcome {account.forename}!", category="success")
-    return redirect("../home")
 
 
 @account_bp.route('/login/', methods=["GET", "POST"])
@@ -79,14 +81,13 @@ def login():
             email = form.email.data
             account = Account.objects(email=email).first()
 
+            # Ensure user exists and password is correct
             if account is not None and account.check_password(form.password.data):
-                # User validates (user object found and password for that
-                # user matched the password provided by the user)
-                return login_and_redirect(account)
+                login_user(account)
+                return redirect("../home")
+
             else:
-                flash(
-                    "(email or username)/password combination not found", category="error"
-                )
+                flash("There is no account with this email/password combination.", category="error")
 
         return render_template("login.html", form=form)
 
@@ -101,4 +102,3 @@ def logout():
     logout_user()
     flash("You have logged out.", category="success")
     return redirect("/")
-

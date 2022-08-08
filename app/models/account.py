@@ -33,10 +33,20 @@ class Account(Document, UserMixin):
                 "surname": self.surname
             }
 
+
     def check_password(self, password):
         """Checks that the pw provided hashes to the stored pw hash value"""
         return check_password_hash(self.password_hash, password)
 
+
+    @classmethod
+    def get(cls, email):
+        ''' Takes user ID and gets details from db '''
+        try:
+            return Account.objects(email=email).first().to_dict()
+
+        except Exception as e:
+            return e
 
     def store(self):
         # dic = {"forename": "Thamanna", "surname": "Uddin"}
