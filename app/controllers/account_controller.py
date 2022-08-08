@@ -8,6 +8,7 @@ account_bp = Blueprint('account_bp', __name__)
 
 
 @account_bp.route('/editaccount/', methods=["POST", "GET"])
+@login_required
 def edit_account():
     if request.method == "POST":
         userid ="TODO"

@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, request, redirect
 from models.profile import Profile
+from flask_login import login_required
 
 profile_bp = Blueprint('profile_bp', __name__)
 
 
 @profile_bp.route('/profile-save', methods=['POST'])
+@login_required
 def add_profile():
     try:
         profile = Profile(
@@ -31,6 +33,7 @@ def add_profile():
 
 
 @profile_bp.route('/profile/', methods=['GET'])
+@login_required
 def get_profile():
     try:
         userid = "62e6ffd3d1d8472cf1002c4a"
@@ -43,54 +46,11 @@ def get_profile():
 
 
 @profile_bp.route('/profile-edit/', methods=['GET', 'POST'])
+@login_required
 def get_edit_profile():
     userid = "62e6ffd3d1d8472cf1002c4a"
 
     if request.method == "POST":
-        # # Ensure username was submitted
-        # if not request.form.get("username"):
-        #     return apology("must provide username", 403)
-        #
-        # # Ensure password was submitted
-        # elif not request.form.get("password"):
-        #     return apology("must provide password", 403)
-        #
-        # # Ensure password and confirm password matches
-        # elif request.form.get("password") != request.form.get("password2"):
-        #     return apology("passwords do not match", 403)
-        #
-        # # Query database to ensure username does not already exist
-        # rows = db.execute("SELECT * FROM users WHERE username = :username",
-        #                   username=request.form.get("username"))
-        #
-        # if len(rows) != 0:
-        #     return apology("username already exists", 403)
-        #
-        # db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",
-        #             username=request.form.get("username"), hash=generate_password_hash(request.form.get("password")))
-        #
-        # # Redirect user to home page
-
-        # if request.method == "POST":
-
-        # Get updated details
-        #     new_bio = request.form.get("new_bio")
-        #     new_email = request.form.get("new_email")
-        #     new_title = request.form.get("new_title")
-        #     new_phone = request.form.get("new_phone")
-        #     new_hours = request.form.get("new_hours")
-        #     new_location = request.form.get("new_location")
-        #     new_field = request.form.get("new_field")
-        #     new_registration = request.form.get("new_registration")
-        #     new_years = request.form.get("new_years")
-        #     new_fee = request.form.get("new_fee")
-        #     new_specialisms = request.form.get("new_specialisms")
-        #     new_treatments = request.form.get("new_treatments")
-        #     new_certifications = request.form.get("new_certifications")
-        #     new_education = request.form.get("new_education")
-        #     new_interests = request.form.get("new_interests")
-
-
         # Create profile object with new details
         updated_profile = Profile(
             id="62e6ffd3d1d8472cf1002c4a",
