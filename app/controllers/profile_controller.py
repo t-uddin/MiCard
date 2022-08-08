@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect
 from models.profile import Profile
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 profile_bp = Blueprint('profile_bp', __name__)
 
@@ -36,8 +36,8 @@ def add_profile():
 @login_required
 def get_profile():
     try:
-        userid = "62e6ffd3d1d8472cf1002c4a"
-        profile = Profile.get(userid)
+        accountid = current_user.id
+        profile = Profile.get(accountid)
 
         return render_template('profile.html', profile=profile)
 
@@ -48,44 +48,57 @@ def get_profile():
 @profile_bp.route('/profile-edit/', methods=['GET', 'POST'])
 @login_required
 def get_edit_profile():
-    userid = "62e6ffd3d1d8472cf1002c4a"
+    accountid = current_user.id
 
     if request.method == "POST":
-        # Create profile object with new details
-        updated_profile = Profile(
-            id="62e6ffd3d1d8472cf1002c4a",
-            bio=request.form.get("new_bio"),
-            work_email=request.form.get("new_email"),
-            job_title=request.form.get("new_title"),
-            phone=request.form.get("new_phone"),
-            working_hours=request.form.get("new_hours"),
-            location=request.form.get("new_location"),
-            field=request.form.get("new_field"),
-            registration=request.form.get("new_registration"),
-            years_experience=request.form.get("new_years"),
-            consultation_fee=request.form.get("new_fee"),
-            specialisms=request.form.getlist("new_specialisms"),
-            treatments=request.form.getlist("new_treatments"),
-            certifications=request.form.getlist("new_certifications"),
-            education=request.form.getlist("new_education"),
-            interests=request.form.getlist("new_interests"),
-            account="62e6f4e8d1d8472cf1002c40")
+        # Get user
+        user = Profile.objects(account=accountid).first()
+
+        bio = request.form.get("new_bio")
+        work_email = request.form.get("new_email")
+        job_title = request.form.get("new_title")
+        phone = request.form.get("new_phone")
+        working_hours = request.form.get("new_hours")
+        location = request.form.get("new_location")
+        field = request.form.get("new_field")
+        registration = request.form.get("new_registration")
+        years_experience = request.form.get("new_years")
+        consultation_fee = request.form.get("new_fee")
+        specialisms = request.form.getlist("new_specialisms")
+        treatments = request.form.getlist("new_treatments")
+        certifications = request.form.getlist("new_certifications")
+        education = request.form.getlist("new_education")
+        interests = request.form.getlist("new_interests")
 
         # remove empty list items
-        updated_profile['specialisms'] = list(filter(len, updated_profile['specialisms']))
-        updated_profile['treatments'] = list(filter(len, updated_profile['treatments']))
-        updated_profile['certifications'] = list(filter(len, updated_profile['certifications']))
-        updated_profile['education'] = list(filter(len, updated_profile['education']))
-        updated_profile['interests'] = list(filter(len, updated_profile['interests']))
+        specialisms = list(filter(len, specialisms))
+        treatments = list(filter(len, treatments))
+        certifications = list(filter(len, certifications))
+        education = list(filter(len, education))
+        interests = list(filter(len, interests))
 
-        # update db
-        updated_profile.save()
+        # update user
+        user.update(
+            bio=bio,
+            work_email=work_email,
+            job_title=job_title,
+            phone=phone,
+            working_hours=working_hours,
+            location=location,
+            field=field,
+            registration=registration,
+            years_experience=years_experience,
+            consultation_fee=consultation_fee,
+            specialisms=specialisms,
+            treatments=treatments,
+            certifications=certifications,
+            education=education,
+            interests=interests
+        )
 
         # redirect to profile page
         return redirect("/profile")
 
     else:
-        userid = "62e6ffd3d1d8472cf1002c4a"
-        profile = Profile.get(userid)
-
+        profile = Profile.get(accountid)
         return render_template("edit_profile.html", profile=profile)

@@ -52,14 +52,10 @@ class Profile(Document):
             }
 
     @classmethod
-    def get(cls, userid):
+    def get(cls, accountid):
         ''' Takes user ID and gets details from db '''
         try:
-            profile = Profile.objects(id=userid).first().to_dict()
-            #
-            # sp = profile.treatments
-            # print(type(sp))
-
+            profile = Profile.objects(account=accountid).first().to_dict()
             return profile
 
         except Exception as e:
