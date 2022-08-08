@@ -1,78 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
-<head>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-
-        <!-- Allow web app to be run in full-screen mode. -->
-        <meta name="apple-mobile-web-app-capable"
-        content="yes">
-
-        <!-- Configure the status bar. -->
-        <meta name="apple-mobile-web-app-status-bar-style"
-        content="black">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="../static/css/style.css">
-        <link rel="stylesheet" href="../static/css/mini-tablet-responsive.css">
-        <link rel="stylesheet" href="../static/css/tablet-responsive.css">
-        <link rel="stylesheet" href="../static/css/laptop-responsive.css">
-        <link rel="stylesheet" href="../static/css/phone-responsive.css">
-
-        <!-- hamburger icon -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <title>MiCard Login</title>
-
-<body>
-    <section class="landing-page">
-      <div class = "brand">
-                 <br>
-
-                <h1>Mi<b>Card</b><br></h1>
-      </div>
-        <br>
-        <br>
+{% extends "layout_nonav.html" %}
+{% block content %}
+<div class="brand container">
+    <br>
+    <h1>Mi<b>Card</b><br></h1>
+    <br>
     <form action="" method="post">
-        <div class="container">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+
+        <div class="form-group">
 {#          <label for="uname"><b>Username:</b></label>#}
-          <input type="text" placeholder="Enter Username" name="uname" required>
+{#          <input type="text" placeholder="Enter Email" name="email" required>#}
+      {{ form.email(class="form-control text-center", placeholder=form.email.description) }}
+      {% for error in form.email.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </div>
 
 {#          <label for="psw"><b>Password:</b></label>#}
-          <input type="password" placeholder="Enter Password" name="psw" required>
-            <br>
+{#          <input type="password" placeholder="Enter Password" name="psw" required>#}
+{#            <br>#}
 
-          <button type="button" class="btn btn-info btn-lg">Login</button>
+        <div class="form-group">
+      {{ form.password(class="form-control text-center", placeholder=form.password.description) }}
+      {% for error in form.password.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </div>
+
+        {{ form.submit(class="btn btn-info btn-lg") }}
+
+          </form>
+{#          <button type="button" class="btn btn-info btn-lg">Login</button>#}
 {#          <label>#}
 {#            <input type="checkbox" checked="checked" name="remember"> Remember me#}
 {#          </label>#}
             <br>
-                    <p>Don't have an account? <a href="register_account.html">Click here to register.</a></p>
-
-        </div>
-
-{#        <div class="container">#}
-{#          <button type="button" class="cancelbtn">Cancel</button>#}
-{#          <span class="psw">Forgot <a href="#">password?</a></span>#}
-{#        </div>#}
-
-      </form>
+                    <p>Don't have an account? <a href="../register">Click here to register.</a></p>
 
 
-    </section>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../static/js/navbar.js"></script>
-
-
-
-</body>
-
-</html>
+{% endblock %}

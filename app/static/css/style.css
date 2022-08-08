@@ -416,7 +416,19 @@ p, li {
     font-size: 20px;
     color: black;
   }
-  /*index page*/
+
+form {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  /*width: 100%*/
+  /*          display: block;*/
+  /*           margin : 0 auto;*/
+  margin: auto;
+  display: block;
+}
+  /*index page ------------------------------------------------------------------------------------- */
 
 .btn-info {
   background-color: #7581fa;
@@ -431,7 +443,7 @@ p, li {
 
 
 
-/* footer */
+/* footer ------------------------------------------------------------------------------------- */
 
 footer {
   /*background-color: grey;*/
@@ -478,8 +490,3 @@ input {
 .img_button {
   cursor:pointer;
 }
-
-/*!* format dynamically added inputs to match existing *!*/
-/*.input_js {*/
-/*  */
-/*}*/

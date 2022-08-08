@@ -1,7 +1,8 @@
 from flask import Flask, current_app, g
+from flask_login import LoginManager
 import mongoengine
 import certifi
-from environment import mongo_host
+from environment import mongo_host, secret_key
 # from werkzeug.local import LocalProxy
 # import bson
 # from routes.user_bp import user_bp
@@ -21,14 +22,26 @@ from environment import mongo_host
 # from app import routes
 # import app
 
+
+# connect to db
 mongoengine.connect(host=mongo_host, tlsCAFile=certifi.where())
 
-def create_app():
-    app = Flask(__name__)
-    # app.config["MONGO_URI"] = mongo_host
-    app.config["SECRET_KEY"] = "d18e4f677ec08636a373abcd1234"
+login_manager = LoginManager()
 
+
+def create_app():
+    # initiate app
+    app = Flask(__name__)
+
+    # update environment variables
+    app.config["SECRET_KEY"] = secret_key
+
+    # register blueprints
     register_blueprints(app)
+
+    # initialize login manager
+    login_manager.init_app(app)
+    login_manager.login_view = "users.login"
 
     return app
 
@@ -42,3 +55,4 @@ def register_blueprints(app):
 
     from controllers.account_controller import account_bp
     app.register_blueprint(account_bp)
+

@@ -7,8 +7,17 @@ from mongoengine import (
     ReferenceField,
     BooleanField
 )
+from config import login_manager
+from flask_login import UserMixin
+from werkzeug.security import check_password_hash
 
-class Account(Document):
+@login_manager.user_loader
+def load_user(user_id):
+    """Load the user object from the user ID stored in the session"""
+    return Account.objects(pk=user_id).first()
+
+
+class Account(Document, UserMixin):
     email = StringField(required=True)
     password_hash = StringField(required=True)
     forename = StringField(required=True)
@@ -24,11 +33,10 @@ class Account(Document):
                 "surname": self.surname
             }
 
+    def check_password(self, password):
+        """Checks that the pw provided hashes to the stored pw hash value"""
+        return check_password_hash(self.password_hash, password)
 
-    def users_index(self):
-        # users = User.get()
-        # return jsonify({'data': users})
-        return "debug"
 
     def store(self):
         # dic = {"forename": "Thamanna", "surname": "Uddin"}
