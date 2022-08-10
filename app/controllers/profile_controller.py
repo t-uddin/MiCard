@@ -45,6 +45,15 @@ def get_profile():
         return ("Error: ", e)
 
 
+def get_raw(accountid):
+    profile = Profile.get_no_dict(accountid)
+    return profile
+
+def to_dict(profile):
+    profile = profile.to_dict()
+    return profile
+
+
 @profile_bp.route('/profile-edit/', methods=['GET', 'POST'])
 @login_required
 def get_edit_profile():
@@ -54,7 +63,7 @@ def get_edit_profile():
         # Get user
         user = Profile.objects(account=accountid).first()
 
-        bio = request.form.get("new_bio")
+        bio = (request.form.get("new_bio")).strip()
         work_email = request.form.get("new_email")
         job_title = request.form.get("new_title")
         phone = request.form.get("new_phone")

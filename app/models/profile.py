@@ -31,22 +31,29 @@ class Profile(Document):
 
 
     def to_dict(self):
+        # convert mongoengine lists to python lists
+        self.specialisms_list = list.copy(self.specialisms)
+        self.certifications_list = list.copy(self.certifications)
+        self.education_list = list.copy(self.education)
+        self.interests_list = list.copy(self.interests)
+        self.treatments_list = list.copy(self.treatments)
+
         return {
                 "id": str(self.id),
                 "contact_email": self.work_email,
                 "job_title": self.job_title,
                 "phone": self.phone,
                 "field": self.field,
-                "specialisms": self.specialisms,
-                "certifications": self.certifications,
-                "education": self.education,
+                "specialisms": self.specialisms_list,
+                "certifications": self.certifications_list,
+                "education": self.education_list,
                 "working_hours": self.working_hours,
                 "location": self.location,
                 "bio": self.bio,
-                "interests": self.interests,
+                "interests": self.interests_list,
                 "exp_years": self.years_experience,
                 "cons_fee": self.consultation_fee,
-                "treatments": self.treatments,
+                "treatments": self.treatments_list,
                 "registration": self.registration,
                 "voice": self.voice
             }
@@ -56,6 +63,16 @@ class Profile(Document):
         ''' Takes user ID and gets details from db '''
         try:
             profile = Profile.objects(account=accountid).first().to_dict()
+            return profile
+
+        except Exception as e:
+            return e
+
+    @classmethod
+    def get_no_dict(cls, accountid):
+        ''' Takes user ID and gets details from db '''
+        try:
+            profile = Profile.objects(account=accountid).first()
             return profile
 
         except Exception as e:

@@ -1,10 +1,11 @@
 from ibm_watson import TextToSpeechV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from environment import tts_api_key, tts_api_url
+from playsound import playsound
 import os
 
 
-class TextToSpeech:
+class Speak:
     # Setup Service
     def __init__(self):
         authenticator = IAMAuthenticator(tts_api_key)
@@ -17,8 +18,11 @@ class TextToSpeech:
                       }
 
         # Convert with a basic language model
-        with open('../../static/audio/input.mp3', 'wb') as input_file:
+        with open('../static/audio/input.mp3', 'wb') as input_file:
             res = self.tts.synthesize(text, accept='audio/mp3', voice=voice_gender[gender]).get_result()
             input_file.write(res.content)
 
-TextToSpeech().text_to_audio("Hello, good morning", "male")
+        # Play the audio
+        playsound('../static/audio/input.mp3')
+
+Speak().text_to_audio("Hello, good morning", "male")
