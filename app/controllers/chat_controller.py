@@ -9,9 +9,13 @@ def converse(cardid):
     assistant = WatsonAssistant()
     session = assistant.new_session()
     profile = Profile.get(cardid)
+
+    # first send card profile data as context variables
+    resp = assistant.send_context(profile)
+    print(resp)
+
     print ("Starting a conversation, stop by Ctrl+C or saying 'bye'")
     print ("======================================================")
-    first = True
 
     while True:
         # get user input text
@@ -20,26 +24,15 @@ def converse(cardid):
         print(text)
 
         # Send the session context on first iteration of the loop
-        if first:
-            print("entered")
-            resp = assistant.send_with_context(text, profile)
-            print(resp)
-            Speak().text_to_audio(resp, "male")
+        print("entered")
 
-            # Save returned context for next round of conversation
-            if ('context' in resp):
-                context = resp['context']
+        resp = assistant.send_message(text)
+        print(resp)
+        Speak().text_to_audio(resp, "male")
 
-            first = False
-
-        else:
-            resp = assistant.send_message(text)
-            print(resp)
-            Speak().text_to_audio(resp, "male")
-
-            # Save returned context for next round of conversation
-            if ('context' in resp):
-                context = resp['context']
+        # Save returned context for next round of conversation
+        if ('context' in resp):
+            context = resp['context']
 
 
 # Testing -------------------------------------------

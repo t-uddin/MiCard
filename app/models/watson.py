@@ -42,9 +42,8 @@ class WatsonAssistant:
         else:
             return "Sorry, I did not understand, could you rephrase your question?"
 
-        return response["output"]["generic"][0]["text"]
 
-    def send_with_context(self, text, profile):
+    def send_context(self, profile):
         # remove Null values from being sent as context variables
         # nprofile = {k: v for k, v in profile.items() if v != None}
         input_profile = {}
@@ -57,7 +56,6 @@ class WatsonAssistant:
                     v.insert(-1, 'and')
                     ', '.join([str(a) for a in v])
 
-        # print(input_profile)
 
         # set context variables to send
         context = {
@@ -73,8 +71,7 @@ class WatsonAssistant:
         # set input message
         input = {
             'message_type': 'text',
-            'text': text,
-            'options': {'return_context': True}
+            'text': "_@_Data58302"
         }
 
         # send
@@ -85,18 +82,12 @@ class WatsonAssistant:
             context=context
         ).get_result()
 
-
-        if response["output"]["generic"][0]["text"]:
-            answer = (response["output"]["generic"][0]["text"])
-            return answer
-        else:
-            answer = "Sorry, I did not understand, could you rephrase your question?"
-            return answer
+        return None
 
 
 profile = Profile.get("62e6f4e8d1d8472cf1002c40")
 
-hi = WatsonAssistant()
-session = hi.new_session()
-hi.send_with_context("Are you registered", profile)
+# hi = WatsonAssistant()
+# session = hi.new_session()
+# hi.send_context("Are you registered", profile)
 # hi.send_with_context("how can i contact you", profile)
