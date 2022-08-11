@@ -60,7 +60,8 @@ class Transcribe:
                                                                  recognize_callback=self.websocket_callback,
                                                                  interim_results=True,
                                                                  background_audio_suppression=0.5,
-                                                                 inactivity_timeout=2,
+                                                                 # inactivity_timeout=-1,
+                                                                 inactivity_timeout=3,
                                                                  model="en-GB_BroadbandModel"
                                                                  )
         return response
@@ -68,6 +69,8 @@ class Transcribe:
     def transcribe_live_audio(self):
         # instantiate pyaudio
         self.audio = pyaudio.PyAudio()
+
+
 
         # open stream using callback
         self.stream = self.audio.open(
@@ -82,12 +85,22 @@ class Transcribe:
 
         self.stream.start_stream()
         audio_source = AudioSource(self.q, True, True)
-        self.recognise(audio_source)
 
-        while not self.websocket_callback.inactivity:
-            pass
+        while True:
+            print("beginning of loop")
+            self.recognise(audio_source)
+
+            # After 2s, stream stops due to inactivity, we check if data was recieved, otherwise restart the stream
+            if hasattr(self.websocket_callback, 'data'):
+                break
+
+            # keep listening until 2 seconds of inactivity
+            # while not self.websocket_callback.inactivity and hasattr(self.websocket_callback, 'data'):
+            #     pass
+
 
         # stop recording
+        print("loop broken")
         self.stream.stop_stream()
         self.stream.close()
         self.audio.terminate()
@@ -95,11 +108,14 @@ class Transcribe:
 
         try:
             text_string = self.websocket_callback.data['results'][0]["alternatives"][0]["transcript"]
+            return text_string
 
         except TypeError:
-            text_string = ""
+            pass
+            # text_string = ""
 
-        return text_string
+
+
 
 
 # print(Transcribe().transcribe_live_audio())

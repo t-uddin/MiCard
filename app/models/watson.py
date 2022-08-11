@@ -86,7 +86,7 @@ class WatsonAssistant:
         ).get_result()
 
 
-        if response["output"]["generic"]:
+        if response["output"]["generic"][0]["text"]:
             answer = (response["output"]["generic"][0]["text"])
             return answer
         else:
