@@ -1,6 +1,7 @@
 from models.watson import WatsonAssistant
 from controllers.profile_controller import Profile
 from models.tts import Speak
+from models.stt import Transcribe
 
 
 def converse(cardid):
@@ -13,11 +14,14 @@ def converse(cardid):
     first = True
 
     while True:
-        # get some input
-        text = input("\nEnter your input message:\n")
+        # get user input text
+        # text = input("\nEnter your input message:\n")
+        text = Transcribe().transcribe_live_audio()
+        print(text)
 
         # Send the session context on first iteration of the loop
         if first:
+            print("entered")
             resp = assistant.send_with_context(text, profile)
             print(resp)
             Speak().text_to_audio(resp, "male")
@@ -32,7 +36,6 @@ def converse(cardid):
             resp = assistant.send_message(text)
             print(resp)
             Speak().text_to_audio(resp, "male")
-
 
             # Save returned context for next round of conversation
             if ('context' in resp):

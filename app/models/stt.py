@@ -32,8 +32,7 @@ class MyRecognizeCallback(RecognizeCallback):
         print("Connection closed")
 
 
-class SpeechToText:
-
+class Transcribe:
     def __init__(self):
         '''Initialise and setup speech to text'''
         self.CHUNK = 1024
@@ -103,4 +102,4 @@ class SpeechToText:
         return text_string
 
 
-# print(SpeechToText().transcribe_live_audio())
+# print(Transcribe().transcribe_live_audio())
