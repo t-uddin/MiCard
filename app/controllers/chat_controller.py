@@ -9,37 +9,47 @@ def converse(cardid):
     assistant = WatsonAssistant()
     session = assistant.new_session()
     profile = Profile.get(cardid)
+
+    # First send context
+    resp = assistant.send_context("Data", profile)
+    print(resp)
+
     print ("Starting a conversation, stop by Ctrl+C or saying 'bye'")
     print ("======================================================")
-    first = True
 
+    # Continue asking for user input and outputting response from Watson
     while True:
+        print("converse round entered")
         # get user input text
         # text = input("\nEnter your input message:\n")
-        text = Transcribe().transcribe_live_audio()
+        text = str(Transcribe().transcribe_live_audio())
         print(text)
 
+        if text == 'None' or text == '%HESITATION':
+            continue
+
         # Send the session context on first iteration of the loop
-        if first:
-            print("entered")
-            resp = assistant.send_with_context(text, profile)
-            print(resp)
-            Speak().text_to_audio(resp, "male")
+        # if first:
+        #     print("entered")
+        #     resp = assistant.send_with_context(text, profile)
+        #     print(resp)
+        #     Speak().text_to_audio(resp, "male")
+        #
+        #     # Save returned context for next round of conversation
+        #     if ('context' in resp):
+        #         context = resp['context']
+        #
+        #     first = False
 
-            # Save returned context for next round of conversation
-            if ('context' in resp):
-                context = resp['context']
+        # else:
+        print(text)
+        resp = assistant.send_message(text)
+        print("Resp = ", resp)
+        Speak().text_to_audio(resp, "male")
 
-            first = False
-
-        else:
-            resp = assistant.send_message(text)
-            print(resp)
-            Speak().text_to_audio(resp, "male")
-
-            # Save returned context for next round of conversation
-            if ('context' in resp):
-                context = resp['context']
+        # # Save returned context for next round of conversation
+        # if ('context' in resp):
+        #     context = resp['context']
 
 
 # Testing -------------------------------------------
