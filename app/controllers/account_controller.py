@@ -88,7 +88,7 @@ def login():
                 return redirect("../home")
 
             else:
-                flash("There is no account with this email/password combination.", category="error")
+                flash("There is no account with this email/password combination.", category="danger")
 
         return render_template("login.html", form=form)
 
