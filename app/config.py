@@ -3,6 +3,8 @@ from flask_login import LoginManager
 import mongoengine
 import certifi
 from environment import mongo_host, secret_key
+from flask_cors import CORS, cross_origin
+
 # from werkzeug.local import LocalProxy
 # import bson
 # from routes.user_bp import user_bp
@@ -35,6 +37,10 @@ def create_app():
 
     # update environment variables
     app.config["SECRET_KEY"] = secret_key
+    app.config['CORS_HEADERS'] = 'Content-Type'
+
+    # Allow cross origin requests from AR app
+    cors = CORS(app)
 
     # register blueprints
     register_blueprints(app)
@@ -55,4 +61,7 @@ def register_blueprints(app):
 
     from controllers.account_controller import account_bp
     app.register_blueprint(account_bp)
+
+    from controllers.chat_controller import chat_bp
+    app.register_blueprint(chat_bp)
 
