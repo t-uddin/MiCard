@@ -65,4 +65,9 @@ video {
     z-index: -100;
 }
 
+iframe {
+    max-height: 100%;
+    max-width: 100%;
+}
+
 
