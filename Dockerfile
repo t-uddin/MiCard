@@ -18,4 +18,6 @@ WORKDIR /app
 # set environment variables
 ENV PYTHONUNBUFFERED=1
 
-CMD ["python3", "run.py"]
+# CMD ["python3", "run.py"]
+
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "run:app"]
