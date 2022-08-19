@@ -71,7 +71,6 @@ class Transcribe:
         self.audio = pyaudio.PyAudio()
 
 
-
         # open stream using callback
         self.stream = self.audio.open(
             format=pyaudio.paInt16,
@@ -90,7 +89,7 @@ class Transcribe:
             print("beginning of loop")
             self.recognise(audio_source)
 
-            # After 2s, stream stops due to inactivity, we check if data was recieved, otherwise restart the stream
+            # After 2s, stream stops due to inactivity, we check if data was received, otherwise restart the stream
             if hasattr(self.websocket_callback, 'data'):
                 break
 
@@ -108,11 +107,15 @@ class Transcribe:
 
         try:
             text_string = self.websocket_callback.data['results'][0]["alternatives"][0]["transcript"]
-            return text_string
+
+        except IndexError:
+            text_string = ""
 
         except TypeError:
-            pass
-            # text_string = ""
+            text_string = ""
+
+        finally:
+            return text_string
 
 
 
