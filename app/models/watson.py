@@ -5,6 +5,8 @@ from controllers.profile_controller import Profile
 
 
 class WatsonAssistant:
+    assistants = {}
+
     def __init__(self):
         self.assistant_id = assistant_id
         authenticator = IAMAuthenticator(assistant_api_key)
@@ -12,7 +14,6 @@ class WatsonAssistant:
             version="2021-11-27",
             authenticator=authenticator
         )
-
         self.assistant_service.set_service_url(assistant_api_url)
 
     def new_session(self):
@@ -34,13 +35,13 @@ class WatsonAssistant:
             }
         ).get_result()
 
-        answer = (response["output"]["generic"][0]["text"])
-        print(answer)
 
-        if answer:
-            return answer
-        else:
-            return "Sorry, I did not understand, could you rephrase your question?"
+        try:
+            answer = response["output"]["generic"][0]["text"]
+        except Exception as e:
+            print(response)
+            answer = "Sorry, I did not understand, could you rephrase your question?"
+        return answer
 
 
     def send_context(self, profile):

@@ -3,6 +3,7 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from environment import tts_api_key, tts_api_url
 from playsound import playsound
 import os
+from datetime import datetime
 
 
 class Speak:
@@ -14,15 +15,20 @@ class Speak:
 
     def text_to_audio(self, text, gender):
         voice_gender = {"male": "en-GB_JamesV3Voice",
-                      "female": "en-GB_CharlotteV3Voice"
-                      }
+                        "female": "en-GB_CharlotteV3Voice"
+                        }
 
         # Convert with a basic language model
-        with open('../static/audio/input.mp3', 'wb') as input_file:
+        time = str(datetime.now().time())
+        url = "app/static/audio/session" + time + ".mp3"
+        print(url)
+        with open(url, 'wb') as input_file:
             res = self.tts.synthesize(text, accept='audio/mp3', voice=voice_gender[gender]).get_result()
+            print(type(res.content))
             input_file.write(res.content)
 
-        # Play the audio
-        playsound('../static/audio/input.mp3')
+        return time
 
-Speak().text_to_audio("Hello, good morning", "male")
+
+# if __name__ == "__main__":
+#     Speak().text_to_audio("hello", "male")

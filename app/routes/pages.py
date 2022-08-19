@@ -27,7 +27,7 @@ def render_():
 
 @main.route('/ar/')
 def render_ar():
-    return redirect(url_for('static', filename='ar_app/ar.html', title="HELLOOO"))
+    return redirect(url_for('static', filename='ar_app/index.html', title="HELLOOO"))
 
 
 @main.route('/ar2/')
