@@ -29,7 +29,11 @@ def render_():
 def render_ar():
     return redirect(url_for('static', filename='ar_app/index.html', title="HELLOOO"))
 
-
 @main.route('/ar2/')
 def render_ar2():
+    return redirect(url_for('static', filename='ar_app2/index.html'))
+
+
+@main.route('/ar-frame/')
+def render_ar_iframe():
     return render_template('ar-iframe.html')

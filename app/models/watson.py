@@ -24,9 +24,9 @@ class WatsonAssistant:
 
         return self.session_id
 
-    def send_message(self, text):
+    def send_message(self, text, session):
         response = self.assistant_service.message(
-            session_id=self.session_id,
+            session_id=session,
             assistant_id=self.assistant_id,
             input={
                 'message_type': 'text',
@@ -44,7 +44,7 @@ class WatsonAssistant:
         return answer
 
 
-    def send_context(self, profile):
+    def send_context(self, profile, session):
         # remove Null values from being sent as context variables
         # nprofile = {k: v for k, v in profile.items() if v != None}
         input_profile = {}
@@ -77,7 +77,7 @@ class WatsonAssistant:
 
         # send
         response = self.assistant_service.message(
-            session_id=self.session_id,
+            session_id=session,
             assistant_id=self.assistant_id,
             input=input,
             context=context

@@ -13,14 +13,14 @@ class Speak:
         self.tts = TextToSpeechV1(authenticator=authenticator)
         self.tts.set_service_url(tts_api_url)
 
-    def text_to_audio(self, text, gender):
+    def text_to_audio(self, text, gender, session):
         voice_gender = {"male": "en-GB_JamesV3Voice",
                         "female": "en-GB_CharlotteV3Voice"
                         }
 
         # Convert with a basic language model
         time = str(datetime.now().time())
-        url = "app/static/audio/session" + time + ".mp3"
+        url = "app/static/audio/" + session + time + ".mp3"
         print(url)
         with open(url, 'wb') as input_file:
             res = self.tts.synthesize(text, accept='audio/mp3', voice=voice_gender[gender]).get_result()
