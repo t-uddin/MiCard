@@ -16,7 +16,6 @@ def render_chat(account_id):
 
 @chat_bp.route('/start/<card_id>', methods=["GET"])
 def create_session(card_id):
-
     # send data to Watson Assistant
     card_assistant = WatsonAssistant()
     session = card_assistant.new_session()

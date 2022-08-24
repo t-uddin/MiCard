@@ -5,10 +5,10 @@ CONTEXT_OPTIONS = {
     'antialias': true,
     'alpha': true,
     'preserveDrawingBuffer': false,
-    'preferWebGl2': true,
+    'preferWebGl2': false,
     'powerPreference': "default"
 };
-SCRIPTS = [ 94471973, 94471976 ];
+SCRIPTS = [ 94471973, 94471976, 97972678 ];
 CONFIG_FILENAME = "config.json";
 INPUT_SETTINGS = {
     useKeyboard: true,
