@@ -1,7 +1,7 @@
 from models.watson import WatsonAssistant
 from controllers.profile_controller import Profile
 from models.tts import Speak
-from models.stt import Transcribe
+# from models.stt import Transcribe
 from models.stt_new import SpeechToText
 from flask import render_template, redirect, request, flash, Blueprint, url_for, jsonify
 import os
@@ -29,40 +29,6 @@ def create_session(card_id):
     print(card_assistant)
     print(session)
     return jsonify({'session': session})  # serialize and use JSON headers
-
-
-@chat_bp.route('/chat/', methods=["GET"])
-def converse():
-    cardid = "62e6f4e8d1d8472cf1002c40"
-    '''start dialog loop with Watson'''
-    assistant = WatsonAssistant()
-    session = assistant.new_session()
-    profile = Profile.get(cardid)
-    print(profile)
-
-    # first send card profile data as context variables
-    resp = assistant.send_context(profile)
-    print(resp)
-
-    print("Starting a conversation, stop by Ctrl+C or saying 'bye'")
-    print("======================================================")
-
-    while True:
-        # get user input text
-        text = input("\nEnter your input message:\n")
-        text = Transcribe().transcribe_live_audio()
-        print(text)
-
-        # Send the session context on first iteration of the loop
-        print("entered")
-
-        resp = assistant.send_message(text)
-        print(resp)
-        # Speak().text_to_audio(resp, "male")
-
-        # Save returned context for next round of conversation
-        if ('context' in resp):
-            context = resp['context']
 
 
 @chat_bp.route('/audio/', methods=['POST'])
@@ -101,6 +67,39 @@ def clear_audio():
 
 
 
-if __name__ == '__main__':
-    cardid = "62e6f4e8d1d8472cf1002c40"
-    converse()
+# @chat_bp.route('/chat/', methods=["GET"])
+# def converse():
+#     cardid = "62e6f4e8d1d8472cf1002c40"
+#     '''start dialog loop with Watson'''
+#     assistant = WatsonAssistant()
+#     session = assistant.new_session()
+#     profile = Profile.get(cardid)
+#     print(profile)
+#
+#     # first send card profile data as context variables
+#     resp = assistant.send_context(profile)
+#     print(resp)
+#
+#     print("Starting a conversation, stop by Ctrl+C or saying 'bye'")
+#     print("======================================================")
+#
+#     while True:
+#         # get user input text
+#         text = input("\nEnter your input message:\n")
+#         text = Transcribe().transcribe_live_audio()
+#         print(text)
+#
+#         # Send the session context on first iteration of the loop
+#         print("entered")
+#
+#         resp = assistant.send_message(text)
+#         print(resp)
+#         # Speak().text_to_audio(resp, "male")
+#
+#         # Save returned context for next round of conversation
+#         if ('context' in resp):
+#             context = resp['context']
+
+# if __name__ == '__main__':
+#     cardid = "62e6f4e8d1d8472cf1002c40"
+#     converse()
