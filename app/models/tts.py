@@ -20,7 +20,7 @@ class Speak:
 
         # Convert with a basic language model
         time = str(datetime.now().time())
-        url = "app/static/audio/" + session + time + ".mp3"
+        url = "static/audio/" + session + time + ".mp3"
         print(url)
         with open(url, 'wb') as input_file:
             res = self.tts.synthesize(text, accept='audio/mp3', voice=voice_gender[gender]).get_result()

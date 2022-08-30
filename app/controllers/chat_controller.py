@@ -54,7 +54,7 @@ def process_input():
 def clear_audio():
     print("clear audio input:", request.form['id'])
 
-    audio_path = "app/static/audio/" + str(request.form['id']) + ".mp3"
+    audio_path = "static/audio/" + str(request.form['id']) + ".mp3"
 
     if os.path.exists(audio_path):
         os.remove(audio_path)
