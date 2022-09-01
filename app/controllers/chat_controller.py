@@ -1,5 +1,6 @@
 from models.watson import WatsonAssistant
-from controllers.profile_controller import Profile
+from models.profile import Profile
+from models.account import Account
 from models.tts import Speak
 # from models.stt import Transcribe
 from models.stt_new import SpeechToText
@@ -9,25 +10,55 @@ import os
 chat_bp = Blueprint('chat_bp', __name__)
 
 
+
 @chat_bp.route('/ar2/<account_id>/', methods=["GET"])
 def render_chat(account_id):
-    return render_template('ar-iframe.html')
+    global card_id
+    card_id = account_id
+    return card_id, render_template('ar-iframe.html')
 
 
-@chat_bp.route('/start/<card_id>', methods=["GET"])
-def create_session(card_id):
-    # send data to Watson Assistant
-    card_assistant = WatsonAssistant()
-    session = card_assistant.new_session()
+@chat_bp.route('/start/', methods=["GET"])
+def create_session():
+    # get card profile data
+    print(card_id)
     profile = Profile.get(card_id)
+    avatar_id = profile['avatar_id']
+
+    global voice
+    voice = profile['voice']
+
+    account = Account.id_get(card_id)
+    print(account)
+    account_name = (account['forename'] + " " + account['surname'])
+
+
+    # account = Account.get(profile.ac)
+    # account_name = Account
     print(profile)
 
-    # first send card profile data as context variables
+    # set up new watson assistant session
+    card_assistant = WatsonAssistant()
+    session = card_assistant.new_session()
+
+    # send card profile data as context variables to session
     card_assistant.send_context(profile, session)
     WatsonAssistant.assistants[card_id] = card_assistant
     print(card_assistant)
     print(session)
-    return jsonify({'session': session})  # serialize and use JSON headers
+
+    # send required data to AR app
+    profile = {
+        'session': session,
+        'account_name': account_name,
+        'avatar_id': avatar_id,
+        'card_id': card_id
+    }
+
+    return jsonify(profile)  # serialize and use JSON headers
+
+
+# I can just send the avatar and voice and name here ????
 
 
 @chat_bp.route('/audio/', methods=['POST'])
@@ -36,7 +67,7 @@ def process_input():
     print("message received")
     input_data = request.files["data"]
     session = request.form['session']
-    card_id = "62e6f4e8d1d8472cf1002c40"
+    # card_id = "62e6f4e8d1d8472cf1002c40"
 
     text = SpeechToText().transcribe(input_data)
 
@@ -44,7 +75,8 @@ def process_input():
     resp = WatsonAssistant().send_message(text, session)
     print("response: ", resp)
 
-    timestamp = Speak().text_to_audio(resp, "male", session)
+    print("voice: ", voice)
+    timestamp = Speak().text_to_audio(resp, voice, session)
     sound_path = session + timestamp
 
     return sound_path

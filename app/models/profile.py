@@ -27,6 +27,7 @@ class Profile(Document):
     treatments = ListField(required=False)
     registration = StringField(required=False)
     voice = StringField()
+    avatar_id = StringField()
     meta = {"collection": "profiles"}
 
 
@@ -55,24 +56,25 @@ class Profile(Document):
                 "cons_fee": self.consultation_fee,
                 "treatments": self.treatments_list,
                 "registration": self.registration,
-                "voice": self.voice
+                "voice": self.voice,
+                "avatar_id": self.avatar_id
             }
 
     @classmethod
-    def get(cls, accountid):
+    def get(cls, account_id):
         ''' Takes user ID and gets details from db '''
         try:
-            profile = Profile.objects(account=accountid).first().to_dict()
+            profile = Profile.objects(account=account_id).first().to_dict()
             return profile
 
         except Exception as e:
             return e
 
     @classmethod
-    def get_no_dict(cls, accountid):
+    def get_object(cls, account_id):
         ''' Takes user ID and gets details from db '''
         try:
-            profile = Profile.objects(account=accountid).first()
+            profile = Profile.objects(account=account_id).first()
             return profile
 
         except Exception as e:

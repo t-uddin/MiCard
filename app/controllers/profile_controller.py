@@ -36,8 +36,8 @@ def add_profile():
 @login_required
 def get_profile():
     try:
-        accountid = current_user.id
-        profile = Profile.get(accountid)
+        account_id = current_user.id
+        profile = Profile.get(account_id)
 
         return render_template('profile.html', profile=profile)
 
@@ -45,9 +45,10 @@ def get_profile():
         return ("Error: ", e)
 
 
-def get_raw(accountid):
-    profile = Profile.get_no_dict(accountid)
+def get_raw(account_id):
+    profile = Profile.get_object(account_id)
     return profile
+
 
 def to_dict(profile):
     profile = profile.to_dict()
@@ -57,11 +58,11 @@ def to_dict(profile):
 @profile_bp.route('/profile-edit/', methods=['GET', 'POST'])
 @login_required
 def get_edit_profile():
-    accountid = current_user.id
+    account_id = current_user.id
 
     if request.method == "POST":
         # Get user
-        user = Profile.objects(account=accountid).first()
+        user = Profile.objects(account=account_id).first()
 
         bio = (request.form.get("new_bio")).strip()
         work_email = request.form.get("new_email")
@@ -109,5 +110,5 @@ def get_edit_profile():
         return redirect("/profile")
 
     else:
-        profile = Profile.get(accountid)
+        profile = Profile.get(account_id)
         return render_template("edit_profile.html", profile=profile)

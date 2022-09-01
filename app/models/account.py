@@ -48,13 +48,19 @@ class Account(Document, UserMixin):
         except Exception as e:
             return e
 
+    @classmethod
+    def id_get(cls, account_id):
+        ''' Takes user ID and gets details from db '''
+        try:
+            return Account.objects(id=account_id).first().to_dict()
+
+        except Exception as e:
+            return e
+
     def store(self):
         # dic = {"forename": "Thamanna", "surname": "Uddin"}
         # x = user_collection.insert_one(dic)
         # print(x)
-        pass
-
-    def show(userId):
         pass
 
     def update(userId):
