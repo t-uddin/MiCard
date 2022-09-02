@@ -80,7 +80,14 @@ class Profile(Document):
         except Exception as e:
             return e
 
-        # return Profile.objects().first().to_dict()
+    @classmethod
+    def format_list(cls, list):
+        '''converts lists to natural-language string'''
+        if len(list) > 1:
+            list.insert(-1, 'and')
+        string = ', '.join(map(str, list))
+        print(string)
+        return string
 
     def store(new_profile):
         ''' Takes a Profile object and saves to db '''
@@ -89,7 +96,6 @@ class Profile(Document):
             return "Success"
         except Exception as e:
             return e
-
 
 
     # def update(userId):

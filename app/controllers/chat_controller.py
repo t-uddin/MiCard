@@ -13,7 +13,7 @@ chat_bp = Blueprint('chat_bp', __name__)
 def render_chat(account_id):
     global card_id
     card_id = account_id
-    return card_id, render_template('ar-iframe.html')
+    return render_template('ar-iframe.html')
 
 
 @chat_bp.route('/start/', methods=["GET"])
@@ -29,8 +29,15 @@ def create_session():
     global email
     email = profile['contact_email']
 
+    # convert lists to natural-language strings
+    profile['specialisms'] = Profile.format_list(profile['specialisms'])
+    profile['certifications'] = Profile.format_list(profile['certifications'])
+    profile['education'] = Profile.format_list(profile['education'])
+    profile['interests'] = Profile.format_list(profile['interests'])
+    profile['treatments'] = Profile.format_list(profile['treatments'])
+
+    # get card account data
     account = Account.id_get(card_id)
-    print(account)
     account_name = (account['forename'] + " " + account['surname'])
 
     print(profile)
@@ -56,7 +63,7 @@ def create_session():
     return jsonify(profile)  # serialize and use JSON headers
 
 
-@chat_bp.route('/audio/', methods=['POST'])
+@chat_bp.route('/chat/', methods=['POST'])
 def process_input():
     # transcribe users input
     print("message received")
