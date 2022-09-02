@@ -10,6 +10,16 @@
 </div>
 
 {#    need edit profile button, change password button, and pull in voice/account data/ edit Mi #}
+<script>
+setTimeout(func, 5000);
+
+function func() {
+    var iframe = document.getElementById("app-frame");
+    iframe.contentWindow.postMessage({
+        account_name: "Python Name",
+    }, "https://playcanv.as");
+};
+</script>
 
 {#    <script>#}
 {#    $(document).ready(function(){#}
