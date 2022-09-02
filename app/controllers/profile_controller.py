@@ -38,7 +38,6 @@ def get_profile():
     try:
         account_id = current_user.id
         profile = Profile.get(account_id)
-
         return render_template('profile.html', profile=profile)
 
     except Exception as e:
