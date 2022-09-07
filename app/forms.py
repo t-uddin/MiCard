@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, SubmitField, PasswordField
+from wtforms import StringField, TextAreaField, SelectField, SubmitField, PasswordField, IntegerField, FieldList, DecimalField, TelField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
-
+from wtforms import validators
 from helpers.auth_validators import safe_string, unique_or_current_user_field
 
 
@@ -99,3 +99,124 @@ class SettingsForm(FlaskForm):
         validators=[Optional(), EqualTo("new_pass", message="Passwords Must Match!")],
     )
     submit = SubmitField("Update")
+
+
+class CreateProfileForm(FlaskForm):
+    """Create a newly registered users profile"""
+    bio = TextAreaField(
+        "Bio",
+        description="Add a bit about yourself..",
+        validators=[
+            DataRequired(),
+        ],
+    )
+    email = StringField(
+        "Contact Email",
+        description="example@email.com",
+        validators=[
+            DataRequired(),
+            Email(),
+        ],
+    )
+    job = StringField(
+        "Job Title",
+        description="Add job title",
+        validators=[DataRequired()]
+    )
+    field = StringField(
+        "Field",
+        description="Add field",
+        validators=[DataRequired()]
+    )
+    phone = TelField(
+        "Contact Number",
+        description="Add contact number",
+        validators=[
+            DataRequired()
+        ],
+    )
+    hours = StringField(
+        "Working Hours",
+        description="Add working hours",
+        validators=[DataRequired()]
+    )
+    location = StringField(
+        "Location",
+        description="Add work location",
+        validators=[DataRequired()]
+    )
+    registration = StringField(
+        "Registration",
+        description="Add registration",
+        validators=[DataRequired()]
+    )
+    years = IntegerField(
+        "Years of Experience",
+        description="0",
+        validators=[DataRequired()]
+    )
+    fee = DecimalField(
+        "Consultation Fee",
+        description=0.00,
+        validators=[DataRequired()]
+    )
+    # specialisms = FieldList(StringField(
+    #                         "Specialisms",
+    #                         description="Add a specialism",
+    #                         validators=[DataRequired()]), min_entries=1)
+
+    specialisms = StringField(
+        "Specialisms",
+        description="Add a specialism",
+        validators=[DataRequired()]
+    )
+
+    treatments = StringField(
+        "Treatments",
+        description="Add a treatment",
+        validators=[DataRequired()]
+    )
+
+    certifications = StringField(
+        "Certifications",
+        description="Add a certification",
+        validators=[DataRequired()]
+    )
+
+    education = StringField(
+        "Education",
+        description="Add a specialism",
+        validators=[DataRequired()]
+    )
+
+    interests = StringField(
+        "Interests",
+        description="Add an interest",
+        validators=[DataRequired()]
+    )
+
+    # treatments = FieldList(StringField(
+    #     "Treatments",
+    #     description="Add a treatment",
+    #     validators=[DataRequired()]
+    # ), min_entries=1)
+    #
+    # certifications = FieldList(StringField(
+    #     "Certifications",
+    #     description="Add a certification",
+    #     validators=[DataRequired()]
+    # ), min_entries=1)
+    #
+    # education = FieldList(StringField(
+    #     "Education",
+    #     description="Add education",
+    #     validators=[DataRequired()]
+    # ), min_entries=1)
+    #
+    # interests = FieldList(StringField(
+    #     "Interests",
+    #     description="Add an interest",
+    #     validators=[DataRequired()]
+    # ), min_entries=1)
+
+    submit = SubmitField("Save")
