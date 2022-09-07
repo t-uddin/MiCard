@@ -20,5 +20,5 @@ function addInterest () {
 }
 
 function addEducation () {
-    $('#specialisms').clone().find('input').val('').attr("placeholder", "Add education").end().appendTo('.new_education');
+    $('#education').clone().find('input').val('').attr("placeholder", "Add education").end().appendTo('.new_education');
 }
