@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, flash, Blueprint
+from flask import render_template, redirect, request, flash, Blueprint, url_for
 from models.account import Account
 from forms import editProfileForm, RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash
@@ -7,28 +7,27 @@ from flask_login import login_user, logout_user, login_required
 
 account_bp = Blueprint('account_bp', __name__)
 
-
-@account_bp.route('/editaccount/', methods=["POST", "GET"])
-@login_required
-def edit_account():
-    if request.method == "POST":
-        userid ="TODO"
-        form = editProfileForm(request.form)
-        new_forename = form.forename.data
-        new_surname = form.surname.data
-        email = "test"
-        password_hash = "test"
-
-        account = Account(id=userid, forename=new_forename, surname=new_surname, email=email, password_hash=password_hash)
-        account.save()
-
-        flash("Profile successfully updated", "success")
-        return redirect("/")
-
-    else:
-        form = editProfileForm()
-        return render_template('edit_profile.html', form=form)
-    pass
+# @account_bp.route('/editaccount/', methods=["POST", "GET"])
+# @login_required
+# def edit_account():
+#     if request.method == "POST":
+#         userid ="TODO"
+#         form = editProfileForm(request.form)
+#         new_forename = form.forename.data
+#         new_surname = form.surname.data
+#         email = "test"
+#         password_hash = "test"
+#
+#         account = Account(id=userid, forename=new_forename, surname=new_surname, email=email, password_hash=password_hash)
+#         account.save()
+#
+#         flash("Profile successfully updated", "success")
+#         return redirect("/")
+#
+#     else:
+#         form = editProfileForm()
+#         return render_template('edit_profile.html', form=form)
+#     pass
 
 
 @account_bp.route('/register/', methods=["GET", "POST"])
@@ -37,16 +36,20 @@ def register():
 
     logout_user()
     form = RegistrationForm()
+    # form.validate_on_submit()
 
     if request.method == "POST":
         # Ensure password and confirm password matches
         if form.password.data != form.confirm_psw.data:
-            flash("Passwords do not match.", category="error")
+            flash("Passwords do not match.", category="warning")
             return redirect("../register")
 
         # Ensure email is not already registered
         elif Account.get(form.email.data) is not None:
-            flash("An account already exists with this email", category="error")
+            print('what')
+            print(form.email.data)
+            print(Account.get(form.email.data))
+            flash("An account already exists with this email", category="warning")
             return redirect("../register")
 
         elif form.validate_on_submit():
@@ -62,10 +65,10 @@ def register():
             flash("Thanks for registering!", category="success")
 
             login_user(account)
-            return redirect("../home")
+            return redirect(url_for('main.render_register_profile'))
 
         else:
-            flash("An error occurred", category="error")
+            flash("An error occurred", category="warning")
             return redirect("../register")
 
     else:
