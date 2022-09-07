@@ -194,15 +194,6 @@ def get_register_profile():
             education = request.form.getlist("education")
             interests = request.form.getlist("interests")
 
-            # remove empty list items
-            specialisms = list(filter(len, specialisms))
-            treatments = list(filter(len, treatments))
-            certifications = list(filter(len, certifications))
-            education = list(filter(len, education))
-            interests = list(filter(len, interests))
-
-            print(specialisms)
-
             # save form data to a new profile object
             profile = Profile(
                 account=account_id,
@@ -216,7 +207,6 @@ def get_register_profile():
                 registration=form.registration.data,
                 years_experience=form.years.data,
                 consultation_fee=str(form.fee.data),
-                # specialisms=form.specialisms.data,
                 specialisms=specialisms,
                 treatments=treatments,
                 certifications=certifications,

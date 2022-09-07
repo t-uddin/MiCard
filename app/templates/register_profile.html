@@ -118,7 +118,9 @@
           {% endfor %}
 
             <div class="new_specialisms"></div>
-            <img class="img_button" src="../static/img/add.png" onclick="addSpecialism();" />
+            <img class="img_button"
+                 src="../static/img/add.png"
+                 onclick="addListField('#specialisms', '.new_specialisms', 'Add a specialism');" />
         </div>
 
         <h3>Treatments</h3>
@@ -132,7 +134,7 @@
             {% endfor %}
 
             <div class="new_treatments"></div>
-            <img class="img_button" src="../static/img/add.png" onclick="addTreatment();" />
+            <img class="img_button" src="../static/img/add.png" onclick="addListField('#treatments', '.new_treatments', 'Add a treatment');" />
         </div>
 
         <h3>Certifications</h3>
@@ -146,7 +148,7 @@
             {% endfor %}
 
             <div class="new_certifications"></div>
-            <img class="img_button" src="../static/img/add.png" onclick="addCertification();" />
+            <img class="img_button" src="../static/img/add.png" onclick="addListField('#certifications', '.new_certifications', 'Add a certification');" />
         </div>
 
         <h3>Education</h3>
@@ -160,7 +162,7 @@
             {% endfor %}
 
             <div class="new_education"></div>
-            <img class="img_button" src="../static/img/add.png" onclick="addEducation();" />
+            <img class="img_button" src="../static/img/add.png" onclick="addListField('#education', '.new_education', 'Add education');" />
         </div>
 
         <h3>Interests</h3>
@@ -174,7 +176,7 @@
             {% endfor %}
 
             <div class="new_interests"></div>
-            <img class="img_button" src="../static/img/add.png" onclick="addInterest();" />
+            <img class="img_button" src="../static/img/add.png" onclick="addListField('#interests', '.new_interests', 'Add an interest');" />
         </div>
 
 {#        <h3>Certifications</h3>#}
