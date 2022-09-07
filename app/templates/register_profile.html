@@ -1,1 +1,238 @@
-{# Similar to edit_profile for adding public profile information after registering, will need a skip for now button#}
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="brand">
+    <br>
+    <h2>Add your Profile...</h2>
+
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+
+        <h3>Bio</h3>
+        <div class="form-group">
+          {{ form.bio(class="form-control text-center", placeholder=form.bio.description, cols="100", rows="5") }}
+          {% for error in form.bio.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Contact Email</h3>
+        <div class="form-group">
+          {{ form.email(class="form-control text-center", placeholder=form.email.description) }}
+          {% for error in form.email.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Job Title</h3>
+        <div class="form-group">
+          {{ form.job(class="form-control text-center", placeholder=form.job.description) }}
+          {% for error in form.job.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Field of Work</h3>
+        <div class="form-group">
+          {{ form.field(class="form-control text-center", placeholder=form.field.description) }}
+          {% for error in form.field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Phone</h3>
+        <div class="form-group">
+          {{ form.phone(class="form-control text-center", placeholder=form.phone.description) }}
+          {% for error in form.phone.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Working Hours</h3>
+        <div class="form-group">
+          {{ form.hours(class="form-control text-center", placeholder=form.hours.description) }}
+          {% for error in form.hours.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Location</h3>
+        <div class="form-group">
+          {{ form.location(class="form-control text-center", placeholder=form.location.description) }}
+          {% for error in form.location.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Registration</h3>
+        <div class="form-group">
+          {{ form.registration(class="form-control text-center", placeholder=form.registration.description) }}
+          {% for error in form.registration.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Years of Experience</h3>
+        <div class="form-group">
+          <p>{{ form.years(class="form-control text-center", placeholder=form.years.description) }}  Years</p>
+          {% for error in form.years.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+        <h3>Consultation Fee</h3>
+        <div class="form-group">
+            <p>£ {{ form.fee(class="form-control text-center", placeholder=form.fee.description) }}</p>
+
+
+          {% for error in form.fee.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </div>
+
+{#        <h3>Specialisms</h3>#}
+{#        <div class="form-group">#}
+{#            {% for field in form.specialisms %}#}
+{#                <div id="specialisms">#}
+{#                    {{ field(class="form-control text-center", placeholder=field.description)}}#}
+{#                </div>#}
+{##}
+{#                {% for error in field.errors %}#}
+{#                    <p style="color: red">{{ error }}</p>#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+{##}
+{#            <div class="new_specialisms"></div>#}
+{#            <img class="img_button" src="../static/img/add.png" onclick="addRegSpecialism(1);" />#}
+{#        </div>#}
+
+        <h3>Specialisms</h3>
+        <div class="form-group">
+            <div id="specialisms">
+                {{ form.specialisms(class="form-control text-center", placeholder=form.specialisms.description) }}
+            </div>
+
+          {% for error in form.specialisms.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+
+            <div class="new_specialisms"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addSpecialism();" />
+        </div>
+
+        <h3>Treatments</h3>
+        <div class="form-group">
+            <div id="treatments">
+                {{ form.treatments(class="form-control text-center", placeholder=form.treatments.description) }}
+            </div>
+
+            {% for error in form.treatments.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+
+            <div class="new_treatments"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addTreatment();" />
+        </div>
+
+        <h3>Certifications</h3>
+        <div class="form-group">
+            <div id="certifications">
+                {{ form.certifications(class="form-control text-center", placeholder=form.certifications.description) }}
+            </div>
+
+            {% for error in form.certifications.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+
+            <div class="new_certifications"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addCertification();" />
+        </div>
+
+        <h3>Education</h3>
+        <div class="form-group">
+            <div id="education">
+                {{ form.education(class="form-control text-center", placeholder=form.education.description) }}
+            </div>
+
+            {% for error in form.education.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+
+            <div class="new_education"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addEducation();" />
+        </div>
+
+        <h3>Interests</h3>
+        <div class="form-group">
+            <div id="interests">
+                {{ form.interests(class="form-control text-center", placeholder=form.interests.description) }}
+            </div>
+
+            {% for error in form.interests.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+
+            <div class="new_interests"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addInterest();" />
+        </div>
+
+{#        <h3>Certifications</h3>#}
+{#        <div class="form-group">#}
+{#            {% for field in form.certifications %}#}
+{#                <div id="specialisms">#}
+{#                    {{ field(class="form-control text-center", placeholder=field.description)}}#}
+{#                </div>#}
+{##}
+{#                {% for error in field.errors %}#}
+{#                    <p style="color: red">{{ error }}</p>#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+{##}
+{#            <div class="new_certifications"></div>#}
+{#            <img class="img_button" src="../static/img/add.png" onclick="addCertification();" />#}
+{#        </div>#}
+{##}
+{#        <h3>Education</h3>#}
+{#        <div class="form-group">#}
+{#            {% for field in form.education %}#}
+{#                <div id="specialisms">#}
+{#                    {{ field(class="form-control text-center", placeholder=field.description)}}#}
+{#                </div>#}
+{##}
+{#                {% for error in field.errors %}#}
+{#                    <p style="color: red">{{ error }}</p>#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+{##}
+{#            <div class="new_education"></div>#}
+{#            <img class="img_button" src="../static/img/add.png" onclick="addEducation();" />#}
+{#        </div>#}
+{##}
+{#        <h3>Interests</h3>#}
+{#        <div class="form-group">#}
+{#            {% for field in form.interests %}#}
+{#                <div id="specialisms">#}
+{#                    {{ field(class="form-control text-center", placeholder=field.description)}}#}
+{#                </div>#}
+{##}
+{#                {% for error in field.errors %}#}
+{#                    <p style="color: red">{{ error }}</p>#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+{##}
+{#            <div class="new_interests"></div>#}
+{#            <img class="img_button" src="../static/img/add.png" onclick="addInterest();" />#}
+{#        </div>#}
+
+
+
+        <div>
+            <!-- Submit -->
+            {{ form.submit(class="btn btn-info btn-lg") }}
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
