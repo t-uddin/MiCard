@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from models.profile import Profile
 from flask_login import login_required, current_user
 from forms import CreateProfileForm
+from qrcode import QRCode
 
 
 profile_bp = Blueprint('profile_bp', __name__)
@@ -264,7 +265,33 @@ def create_avatar():
         )
 
         # redirect to profile page
-        return redirect("/home")
+        return redirect("/qr")
 
     else:
         return render_template("create_avatar.html")
+
+
+@profile_bp.route('/qr/', methods=['GET'])
+@login_required
+def create_qr():
+    account_id = str(current_user.id)
+    host = "https://micard.rzseqhyikaq.eu-gb.codeengine.appdomain.cloud/"
+
+    print(type(account_id))
+
+    # Link for users AR page
+    input_data = host + "ar2/" + account_id
+
+    # Creating an instance of qrcode
+    qr = QRCode(
+        version=1,
+        box_size=6,
+        border=5)
+
+    qr.add_data(input_data)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill='black', back_color='white')
+    img.save("static/img/qr/" + account_id + '.png')
+
+    return render_template("download-qr.html")
