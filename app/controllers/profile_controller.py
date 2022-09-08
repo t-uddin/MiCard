@@ -46,6 +46,18 @@ def get_profile():
         return ("Error: ", e)
 
 
+@profile_bp.route('/avatar/', methods=['GET'])
+@login_required
+def get_avatar():
+    try:
+        account_id = current_user.id
+        profile = Profile.get(account_id)
+        return render_template('avatar.html', profile=profile)
+
+    except Exception as e:
+        return ("Error: ", e)
+
+
 def get_raw(account_id):
     profile = Profile.get_object(account_id)
     return profile

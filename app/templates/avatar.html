@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
+<div class="brand container">
+    <br>
+    <h2>Card Avatar:</h2>
 
-</body>
-</html>
+    <img src="../static/img/{{ profile.avatar_id }}.gif"/>
+    <br>
+    <p>Voice: {{ profile.voice }}</p>
+
+</div>
+
+{% endblock %}
