@@ -228,3 +228,31 @@ def get_register_profile():
         return render_template(url_for('main.render_register_profile'), form=form)
 
 
+
+@profile_bp.route('/avatar-create/', methods=['GET', 'POST'])
+@login_required
+def create_avatar():
+    account_id = current_user.id
+
+    if request.method == "POST":
+        # Get user
+        user = Profile.objects(account=account_id).first()
+
+        print(request.form)
+
+        avatar = request.form.get("avatar")
+        voice = request.form.get("voice")
+
+        print(avatar, voice)
+
+        # update profile with avatar details
+        user.update(
+            avatar_id=avatar,
+            voice=voice
+        )
+
+        # redirect to profile page
+        return redirect("/home")
+
+    else:
+        return render_template("create_avatar.html")
