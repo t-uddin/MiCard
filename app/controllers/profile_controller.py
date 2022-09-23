@@ -7,32 +7,32 @@ from qrcode import QRCode
 
 profile_bp = Blueprint('profile_bp', __name__)
 
-
-@profile_bp.route('/profile-save', methods=['POST'])
-@login_required
-def add_profile():
-    try:
-        profile = Profile(
-            work_email="test@hotmail.com",
-            job_title="test",
-            phone="test",
-            field="test",
-            specialisms=["test", "test", "test", "test"],
-            certifications=["test", "test"],
-            education=["test"],
-            working_hours="test",
-            location="test",
-            bio="test",
-            registration="test",
-            interests=["test", "test"],
-            years_experience=13,
-            consultation_fee="0",
-            voice="Male")
-        profile.save()
-        # store(profile)
-        return
-    except Exception as e:
-        return ("Error: ", e)
+#
+# @profile_bp.route('/profile-save', methods=['POST'])
+# @login_required
+# def add_profile():
+#     try:
+#         profile = Profile(
+#             work_email="test@hotmail.com",
+#             job_title="test",
+#             phone="test",
+#             field="test",
+#             specialisms=["test", "test", "test", "test"],
+#             certifications=["test", "test"],
+#             education=["test"],
+#             working_hours="test",
+#             location="test",
+#             bio="test",
+#             registration="test",
+#             interests=["test", "test"],
+#             years_experience=13,
+#             consultation_fee="0",
+#             voice="Male")
+#         profile.save()
+#         # store(profile)
+#         return
+#     except Exception as e:
+#         return ("Error: ", e)
 
 
 @profile_bp.route('/profile/', methods=['GET'])
@@ -53,6 +53,7 @@ def get_avatar():
     try:
         account_id = current_user.id
         profile = Profile.get(account_id)
+        print("Profile:" , profile)
         return render_template('avatar.html', profile=profile)
 
     except Exception as e:
@@ -180,7 +181,6 @@ def get_create_profile():
             interests=interests
         )
 
-        print(profile.account)
         # update user
         profile.save()
 
@@ -249,6 +249,7 @@ def create_avatar():
 
     if request.method == "POST":
         # Get user
+        print(account_id)
         user = Profile.objects(account=account_id).first()
 
         print(request.form)

@@ -23,6 +23,28 @@ class ProfileTest(TestCase, Initialise):
         response = self.app.get(f"/ar2/{self.account_id}", follow_redirects=True)
         assert b"iframe.contentWindow.postMessage" in response.data
 
+    # def test_chat(self):
+    #     request = {"data": "",
+    #             "session": ""}
+    #
+    #
+    #     response = self.app.get('/start/', follow_redirects=True)
+    #     print(response.data)
+
+
+    def test_existing_email_registration(self):
+        signup_info = {
+            "email": "test@test.com",
+            "forename": "Test",
+            "surname": "Test",
+            "password": "test_password",
+            "confirm_psw": "test_password",
+        }
+        response = self.app.post('/register/', data=signup_info, follow_redirects=True)
+        assert b"An account already exists with this email" in response.data
+
+
+
     # def test_create_session(self):
     #     credentials = {
     #         "email": "test@test.com",

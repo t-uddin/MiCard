@@ -45,9 +45,12 @@ class Initialise:
             interests=["test", "test"],
             years_experience=13,
             consultation_fee="0",
-            voice="Male")
+            voice="male",
+            avatar_id="doctor_f1")
         profile.save()
         self.profile = profile
         return profile
+
+
 
 

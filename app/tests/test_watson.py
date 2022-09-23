@@ -13,7 +13,7 @@ class WatsonTest(TestCase, Initialise):
         pass
 
     def test_watson_chat(self):
-        msg = self.assistant.send_message("what are your  hours", self.session_id)
+        msg = self.assistant.send_message("what are your hours", self.session_id)
         self.assertEqual(msg, "My working hours are ")
 
     def test_watson_context(self):
