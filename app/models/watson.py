@@ -86,7 +86,7 @@ class WatsonAssistant:
         return None
 
 
-profile = Profile.get("62e6f4e8d1d8472cf1002c40")
+# profile = Profile.get("62e6f4e8d1d8472cf1002c40")
 
 # hi = WatsonAssistant()
 # session = hi.new_session()

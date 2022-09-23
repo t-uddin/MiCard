@@ -65,11 +65,10 @@ def create_session():
 
 @chat_bp.route('/chat/', methods=['POST'])
 def process_input():
-    # transcribe users input
-    print("message received")
     input_data = request.files["data"]
     session = request.form['session']
 
+    # transcribe users input
     text = SpeechToText().transcribe(input_data)
 
     # get response from Watson Assistant
