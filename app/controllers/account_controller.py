@@ -42,15 +42,12 @@ def register():
         # Ensure password and confirm password matches
         if form.password.data != form.confirm_psw.data:
             flash("Passwords do not match.", category="warning")
-            return redirect("../register")
+            return redirect(url_for("account_bp.register"))
 
         # Ensure email is not already registered
         elif Account.get(form.email.data) is not None:
-            print('what')
-            print(form.email.data)
-            print(Account.get(form.email.data))
             flash("An account already exists with this email", category="warning")
-            return redirect("../register")
+            return redirect(url_for("account_bp.register"))
 
         elif form.validate_on_submit():
             password_hash = generate_password_hash(form.password.data)
@@ -69,7 +66,7 @@ def register():
 
         else:
             flash("An error occurred", category="warning")
-            return redirect("../register")
+            return redirect(url_for("account_bp.register"))
 
     else:
         return render_template('register_account.html', form=form)
@@ -89,7 +86,7 @@ def login():
             # Ensure user exists and password is correct
             if account is not None and account.check_password(form.password.data):
                 login_user(account)
-                return redirect("../home")
+                return redirect(url_for("main.home"))
 
             else:
                 flash("There is no account with this email/password combination.", category="danger")

@@ -180,12 +180,12 @@ def get_create_profile():
             interests=interests
         )
 
-        print(profile)
+        print(profile.account)
         # update user
         profile.save()
 
         # redirect to profile page
-        return redirect("/profile")
+        return redirect(url_for('profile_bp.get_profile'))
 
     else:
         return redirect(url_for('main.render_create_avatar'))

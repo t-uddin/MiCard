@@ -19,7 +19,7 @@ def render_chat(account_id):
 @chat_bp.route('/start/', methods=["GET"])
 def create_session():
     # get card profile data
-    print(card_id)
+    # print(card_id)
     profile = Profile.get(card_id)
     avatar_id = profile['avatar_id']
 
