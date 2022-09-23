@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
+<div class="brand container">
+    <br>
+    <h2>Your card's AR experience is Ready.</h2>
+    <br>
+    <p>Click on the images below to download, and attach to your business card to link your AR chatbot.</p>
+    <br>
 
-</body>
-</html>
+    <p>QR Code: </p>
+    <a href="../static/img/qr/{{ current_user.id }}.png" download="MiCard-QR">
+    <img src="../static/img/qr/{{ current_user.id }}.png" download="MiCard-QR"/>
+{#            <button class="btn btn-info btn-sm" type="submit">Download</button>#}
+    </a>
+<br>
+    <p>AR Marker: </p>
+        <a href="../static/img/kanji_marker.jpeg" download="MiCard-marker">
+        <img src="../static/img/kanji_marker.jpeg"/>
+{#        <button class="btn btn-info btn-sm" type="submit">Download</button>#}
+        </a>
+    <br>
+            <a href={{ url_for('main.home') }}><button type="button" class="btn btn-dark btn-lg">Finish</button></a>
+</div>
+
+{% endblock %}

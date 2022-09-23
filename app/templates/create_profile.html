@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="brand">
+    <br>
+    <h2>Add your Profile...</h2>
+    <form action="/profile-create" method="post" id="createprofile">
+        <h3>Bio</h3>
+        <div class="form-group">
+            <textarea placeholder="Add a bit about yourself.." form="createprofile" class="form-control" name="new_bio" cols="100" rows="5"></textarea>
+        </div>
+
+        <h3>Contact email</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_email" type="email" placeholder="Add email">
+        </div>
+
+        <h3>Job Title</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_title" value="" type="text" placeholder="Add job title">
+        </div>
+
+        <h3>Field</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_field" value="" type="text" placeholder="Add job filed">
+        </div>
+
+        <h3>Phone</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_phone" value="" type="tel" placeholder="Add phone number">
+        </div>
+
+        <h3>Working Hours</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_hours" value="" type="text" placeholder="Add working hours">
+        </div>
+
+        <h3>Location</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_location" value="" type="text" placeholder="Add work location">
+        </div>
+
+        <h3>Registration</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_registration" value="" type="text" placeholder="Add a Registration>">
+        </div>
+
+        <h3>Years of Experience</h3>
+        <div class="form-group">
+            <input class="form-control" name="new_years" value="" type="number" min="0" placeholder="0">
+        </div>
+
+        <h3>Consultation Fee</h3>
+        <div class="form-group">
+            <p>£ <input class="form-control" name="new_fee" value="" type="number" min=0 placeholder="0"></p>
+        </div>
+
+        <h3>Specialisms</h3>
+        <div class="form-group">
+            <div id="specialisms">
+                <input class="form-control" name="new_specialisms" placeholder="Add a specialism" type="text">
+            </div>
+
+            <div class="new_specialisms"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addSpecialism();" />
+        </div>
+
+        <h3>Treatments</h3>
+        <div class="form-group">
+            <div id="treatments">
+                <input class="form-control" name="new_treatments" placeholder="Add a treatment" type="text">
+            </div>
+
+            <div class="new_treatments"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addTreatment();" />
+        </div>
+
+        <h3>Certifications</h3>
+        <div class="form-group">
+            <div id="certifications">
+                <input class="form-control" name="new_certifications" placeholder="Add a certification" type="text">
+            </div>
+
+            <div class="new_certifications"></div>
+            <img class="img_button" src="../static/img/add.png" onclick="addCertification();" />
+        </div>
+
+      <h3>Education</h3>
+      <div class="form-group">
+          <div id="education">
+              <input class="form-control" name="new_education" placeholder="Add education" type="text">
+          </div>
+
+          <div class="new_education"></div>
+          <img class="img_button" src="../static/img/add.png" onclick="addEducation();" />
+      </div>
+
+      <h3>Interests</h3>
+      <div class="form-group">
+          <div id="interests">
+              <input class="form-control" name="new_interests" placeholder="Add an interest" type="text">
+          </div>
+
+          <div class="new_interests"></div>
+          <img class="img_button" src="../static/img/add.png" onclick="addInterest();" />
+      </div>
+
+      <br>
+      <br>
+
+      <button class="btn btn-info btn-lg" type="submit">Next</button>
+    </form>
+</div>
+
+{% endblock %}

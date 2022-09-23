@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request, flash, Blueprint
 from flask_login import login_required, current_user
-from forms import editProfileForm
+from forms import editProfileForm, CreateProfileForm
 
 main = Blueprint('main', __name__)
 
@@ -19,10 +19,22 @@ def home():
     return render_template('home.html')
 
 
-@main.route('/avatar/')
+@main.route('/create-profile')
 @login_required
-def render_():
-    return render_template('login.html')
+def render_create_profile():
+    return render_template('create_profile.html')
+
+
+@main.route('/profile-register')
+@login_required
+def render_register_profile():
+    return render_template('register_profile.html', form=CreateProfileForm())
+
+
+@main.route('/create-avatar')
+@login_required
+def render_create_avatar():
+    return render_template('create_avatar.html')
 
 
 @main.route('/ar/')

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="brand container">
+    <br>
+    <h2>Create your Avatar!</h2>
+
+       <form action="/avatar-create" method="post" id="avatar-create">
+           <h3>Choose Mi</h3>
+           <img src="../static/img/doctor_m1.gif"/>
+
+           <div class="form-group">
+               <select name="avatar" class="form-control" onchange="setImage(this)">
+                   <option value="doctor_m1">Doctor - Male</option>
+                   <option value="doctor_f1">Doctor - Female</option>
+               </select>
+          </div>
+
+
+           <div class="form-group">
+               <h3>Voice gender</h3>
+               <select name="voice"  class="form-control">
+                   <option value="male">Male</option>
+                   <option value="female">Female</option>
+               </select>
+          </div>
+
+           <br>
+
+        <button class="btn btn-info btn-lg" type="submit">Save Avatar</button>
+      </form>
+</div>
+
+
+
+{% endblock %}

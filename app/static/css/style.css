@@ -90,6 +90,14 @@ html {
     width: 100%;
   }
 
+p3 {
+  text-align: center;
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: grey;
+  }
+
+
 
 /* NAVBAR */
 /*nav {*/

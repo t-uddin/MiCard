@@ -41,9 +41,9 @@ class Account(Document, UserMixin):
 
     @classmethod
     def get(cls, email):
-        ''' Takes user ID and gets details from db '''
+        ''' Takes email and gets details from db '''
         try:
-            return Account.objects(email=email).first().to_dict()
+            return Account.objects(email=email).first()
 
         except Exception as e:
             return e

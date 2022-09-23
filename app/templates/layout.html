@@ -36,13 +36,11 @@
 
 
 <body>
-            {% include 'flash_messages.html' %}
-
 <!--Navbar-->
     <header>
     <div class="topnav" id="myTopnav">
         <a class="brand-nav" href="{{ url_for('main.home') }}"><h1>Mi<b>Card</b><br></h1></a>
-        <a class="nav-links" href="{{ url_for('main.render_ar2') }}">Scan</a>
+        <a class="nav-links" href="{{ url_for('profile_bp.get_avatar') }}">My Mi</a>
         <a class="nav-links" href="{{ url_for('profile_bp.get_profile') }}">My Profile</a>
         <a class="nav-links" href="{{ url_for('account_bp.logout') }}">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -54,6 +52,7 @@
 {#            <div class="brand">#}
 {#                <h1 class="">Mi<b>Card</b><br></h1>#}
 {#            </div>#}
+{% include 'flash_messages.html' %}
 
 <main class="container-fluid">
 
@@ -68,7 +67,8 @@
 </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/../static/js/navbar.js"></script>
-    <script src="/../static/js/edit_profile.js"></script>
+    <script src="/../static/js/profile_forms.js"></script>
+    <script src="/../static/js/avatar_form.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
