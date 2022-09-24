@@ -24,7 +24,7 @@ class SeleniumTest(TestCase, Initialise):
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--no-sandbox')
         options.add_argument("use-fake-ui-for-media-stream")
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
 
         service = ChromeService(executable_path=ChromeDriverManager().install())
         self.driver = webdriver.Chrome(options=options, service=service)
