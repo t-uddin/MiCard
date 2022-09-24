@@ -1,13 +1,14 @@
 from unittest import TestCase
-
 from werkzeug.datastructures import FileStorage
-
 from initialise_tests import Initialise
 from models.profile import Profile
 from models.account import Account
 from controllers.chat_controller import render_chat
 import ast
 from io import BytesIO
+from json import loads
+from pathlib import Path
+from time import sleep
 
 class ProfileTest(TestCase, Initialise):
     def setUp(self):
@@ -27,7 +28,7 @@ class ProfileTest(TestCase, Initialise):
         self.app.post('/login/', data=credentials, follow_redirects=True)
 
         response = self.app.get(f"/ar2/{self.account_id}", follow_redirects=True)
-        assert b"iframe.contentWindow.postMessage" in response.data
+        assert b"iframe" in response.data
 
 
     def test_create_session(self):
@@ -61,8 +62,7 @@ class ProfileTest(TestCase, Initialise):
                                b'\xa6V\xda"\xac\xcf\x85\x9fXA*\xe1\xbe\xc6h\xae\xe5\xa1\xb9\xd8,IT`\xa9\xab'
                                b'\x83G\xb6@\x8f\xdb\xbe\x9e\'\xc0@\xe8\x82\xe1`\x90 CFq\x1c\x9e\x03>\xe6*')
 
-
-        file_storage = FileStorage(stream=sample_audio, name="data", filename="sample_query")
+        file_storage = FileStorage(stream=sample_audio, name="data", filename="data")
 
         chat_request_data = {
             "data": file_storage,
@@ -71,7 +71,14 @@ class ProfileTest(TestCase, Initialise):
 
         response = self.app.post('/chat/', data=chat_request_data, follow_redirects=True)
 
-        assert b"audio" in response.data
+        chat_bytes = response.data
+        chat_dict_str = str(chat_bytes.decode("UTF-8"))
+        chat_response_data = loads(chat_dict_str)
+        audio_name = chat_response_data["audio"]
+        audio_path = Path("static/audio/" + audio_name + ".mp3")
+
+        self.assertTrue(audio_path.is_file())
+
 
 
 

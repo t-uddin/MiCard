@@ -226,7 +226,6 @@ def get_register_profile():
                 interests=interests
             )
 
-            print(profile)
             # update user
             profile.save()
 
@@ -234,7 +233,8 @@ def get_register_profile():
             return redirect(url_for('main.render_create_avatar'))
 
         else:
-            print("error in form")
+            print(str(form.errors))
+            return redirect(url_for("profile_bp.get_register_profile"))
 
     else:
         return render_template(url_for('main.render_register_profile'), form=form)
@@ -249,8 +249,6 @@ def create_avatar():
     if request.method == "POST":
         # Get user
         user = Profile.objects(account=account_id).first()
-
-        print(request.form)
 
         avatar = request.form.get("avatar")
         voice = request.form.get("voice")
@@ -273,8 +271,6 @@ def create_avatar():
 def create_qr():
     account_id = str(current_user.id)
     host = "https://micard.rzseqhyikaq.eu-gb.codeengine.appdomain.cloud/"
-
-    print(type(account_id))
 
     # Link for users AR page
     input_data = host + "ar2/" + account_id

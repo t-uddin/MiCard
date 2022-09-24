@@ -39,8 +39,6 @@ def create_session():
     account = Account.id_get(card_id)
     account_name = (account['forename'] + " " + account['surname'])
 
-    print(profile)
-
     # set up new watson assistant session
     card_assistant = WatsonAssistant()
     session = card_assistant.new_session()
@@ -81,12 +79,15 @@ def process_input():
         resp = "Sure, I'll open up an email to me on your phone."
         send_email = email
 
-    print("voice: ", voice)
     timestamp = Speak().text_to_audio(resp, voice, session)
     sound_path = session + timestamp
 
-    data = {"audio": sound_path, "email": send_email}
-    print(data)
+    data = {
+        'audio': sound_path,
+        'email': send_email
+    }
+
+    print("data:", data)
 
     return data
 

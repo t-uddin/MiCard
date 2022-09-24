@@ -86,7 +86,7 @@ class Profile(Document):
         if len(list) > 1:
             list.insert(-1, 'and')
         string = ', '.join(map(str, list))
-        print(string)
+        # print(string)
         return string
 
     # def store(new_profile):
