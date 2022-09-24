@@ -19,7 +19,6 @@ def render_chat(account_id):
 @chat_bp.route('/start/', methods=["GET"])
 def create_session():
     # get card profile data
-    # print(card_id)
     profile = Profile.get(card_id)
     avatar_id = profile['avatar_id']
 
@@ -87,6 +86,7 @@ def process_input():
     sound_path = session + timestamp
 
     data = {"audio": sound_path, "email": send_email}
+    print(data)
 
     return data
 

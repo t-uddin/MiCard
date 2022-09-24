@@ -1,5 +1,7 @@
 from unittest import TestCase
 from initialise_tests import Initialise
+from models.account import Account
+
 
 
 class AuthTest(TestCase, Initialise):
@@ -58,3 +60,11 @@ class AuthTest(TestCase, Initialise):
         }
         response = self.app.post('/register/', data=signup_info, follow_redirects=True)
         assert b"Thanks for registering!" in response.data
+
+    def test_id_get(self):
+        profile = self.create_profile()
+        new_id = str(profile.account.id)
+        account = Account.id_get(new_id)
+        response_id = str(account.get("id"))
+
+        self.assertEqual(new_id, response_id)

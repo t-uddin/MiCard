@@ -89,13 +89,13 @@ class Profile(Document):
         print(string)
         return string
 
-    def store(new_profile):
-        ''' Takes a Profile object and saves to db '''
-        try:
-            new_profile.save()
-            return "Success"
-        except Exception as e:
-            return e
+    # def store(new_profile):
+    #     ''' Takes a Profile object and saves to db '''
+    #     try:
+    #         new_profile.save()
+    #         return "Success"
+    #     except Exception as e:
+    #         return e
 
 
     # def update(userId):

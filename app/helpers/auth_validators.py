@@ -7,24 +7,24 @@ from wtforms import ValidationError
 from models.account import Account
 
 
-def safe_string():
-    """Validates that the field matches some safe requirements
-
-    Used to make sure our user's username is safe and readable
-
-    Requirements:
-    - contains only letters, numbers, dashes, and underscores
-    """
-
-    def validation(form, field):
-        string = field.data.lower()
-        pattern = re.compile(r"^[a-z0-9_-]+$")
-        match = pattern.match(string)
-        if not match:
-            message = "Must contain only letters, numbers, dashes and underscores."
-            raise ValidationError(message)
-
-    return validation
+# def safe_string():
+#     """Validates that the field matches some safe requirements
+#
+#     Used to make sure our user's username is safe and readable
+#
+#     Requirements:
+#     - contains only letters, numbers, dashes, and underscores
+#     """
+#
+#     def validation(form, field):
+#         string = field.data.lower()
+#         pattern = re.compile(r"^[a-z0-9_-]+$")
+#         match = pattern.match(string)
+#         if not match:
+#             message = "Must contain only letters, numbers, dashes and underscores."
+#             raise ValidationError(message)
+#
+#     return validation
 
 
 def unique_or_current_user_field(message=None):

@@ -57,14 +57,3 @@ class Account(Document, UserMixin):
         except Exception as e:
             return e
 
-    def store(self):
-        # dic = {"forename": "Thamanna", "surname": "Uddin"}
-        # x = user_collection.insert_one(dic)
-        # print(x)
-        pass
-
-    def update(userId):
-        pass
-
-    def delete(userId):
-        pass

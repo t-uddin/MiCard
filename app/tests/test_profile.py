@@ -2,6 +2,7 @@ from unittest import TestCase
 from initialise_tests import Initialise
 from models.profile import Profile
 from models.account import Account
+from controllers.profile_controller import get_raw
 
 
 class ProfileTest(TestCase, Initialise):
@@ -149,6 +150,13 @@ class ProfileTest(TestCase, Initialise):
         }
 
         response = self.app.post('/avatar-create/', data=avatar, follow_redirects=True)
-        print(response.data)
         assert b"AR experience is Ready" in response.data
 
+
+    def test_get_raw_profile(self):
+        profile = self.create_profile()
+        print(profile)
+
+        returned_profile = get_raw(profile.account)
+
+        self.assertEqual(profile, returned_profile)

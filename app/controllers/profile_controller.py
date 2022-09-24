@@ -53,7 +53,6 @@ def get_avatar():
     try:
         account_id = current_user.id
         profile = Profile.get(account_id)
-        print("Profile:" , profile)
         return render_template('avatar.html', profile=profile)
 
     except Exception as e:
@@ -249,15 +248,12 @@ def create_avatar():
 
     if request.method == "POST":
         # Get user
-        print(account_id)
         user = Profile.objects(account=account_id).first()
 
         print(request.form)
 
         avatar = request.form.get("avatar")
         voice = request.form.get("voice")
-
-        print(avatar, voice)
 
         # update profile with avatar details
         user.update(
