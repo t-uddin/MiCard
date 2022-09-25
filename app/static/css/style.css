@@ -18,14 +18,12 @@ body {
   grid-template-columns: 1fr;
 }
 
-
 html {
   font-size: 1rem;
   height: 100%;
 }
 
 /* defining the root variables */
-
 :root {
   --global-background-color: #c0bfff;
   --transition: all 0.5s;
@@ -45,45 +43,6 @@ html {
   justify-content: space-around;
 }
 
-/*.nav {*/
-/*  position: relative;*/
-/*  left: 30px;*/
-/*  width: 100%;*/
-/*  justify-content: flex-start;*/
-/*  font-weight: normal;*/
-/*  font-size: 40px;*/
-/*  color: white;*/
-/*  z-index: 100 !important;*/
-/*}*/
-
-/*.grid, body*/
-/*   {*/
-/*    display: grid;*/
-/*    align-content: center;*/
-/*    justify-content: space-evenly;*/
-/*  !*overflow: hidden;*!*/
-/*  }*/
-
-/*.grid*/
-/*   {*/
-/*    display: grid;*/
-/*    align-content: space-around;*/
-/*    justify-content: space-evenly;*/
-/*  }*/
-
-/*body*/
-/*   {*/
-/*    display: grid;*/
-/*    align-content: space-around;*/
-/*    justify-content: space-evenly;*/
-/*  }*/
-
-/*.landing-page {*/
-/*  position: relative;*/
-/*  grid-template-rows: 1fr;*/
-/*  grid-template-columns: 1fr;*/
-/*}*/
-
 .slide {
     position: static;
     height: 100%;
@@ -97,110 +56,12 @@ p3 {
   color: grey;
   }
 
-
-
-/* NAVBAR */
-/*nav {*/
-/*  position: fixed;*/
-/*  top: 0;*/
-/*  height: 13vh;*/
-/*  width: 100%;*/
-/*  background-color: #000000;*/
-/*  grid-template-rows: 0.99fr;*/
-/*  grid-template-columns: auto 10vw;*/
-/*  align-items: center;*/
-/*  overflow-y: hidden;*/
-/*  z-index: 9;*/
-/*  transition: var(--transition);*/
-/*  display: grid;*/
-/*  align-content: center;*/
-/*  justify-content: space-evenly;*/
-
-
-/*}*/
-
-/*.landing-page > nav > img {*/
-/*  width: 95%;*/
-/*}*/
-
-
-/*.toggle-nav-buttons {*/
-/*    position: relative;*/
-/*    height: 50%;*/
-/*  }*/
-
-/*  .toggle-nav-buttons > svg {*/
-/*    position: absolute;*/
-/*    fill: white;*/
-/*    opacity: 0;*/
-/*    visibility: hidden;*/
-/*  }*/
-
-/*  .toggle-nav-buttons > svg:nth-child(1) {*/
-/*    opacity: 1;*/
-/*    visibility: visible;*/
-/*  }*/
-
-/*  .nav-links {*/
-/*    position: absolute;*/
-/*    width: 100%;*/
-/*    top: 13vh;*/
-/*    background-color: #444444;*/
-/*    justify-content: flex-start;*/
-/*    opacity: 0;*/
-/*    visibility: hidden;*/
-/*    transition: var(--transition);*/
-/*    z-index:10;*/
-/*  }*/
-
-/*  .links {*/
-/*    position: relative;*/
-/*    padding-left: 10px;*/
-/*    text-transform: uppercase;*/
-/*    font-weight: normal;*/
-/*    font-size: 12px;*/
-/*    color: white;*/
-/*    letter-spacing: 1.3px;*/
-/*    cursor: pointer;*/
-/*  }*/
-
-/*  .links::after {*/
-/*    position: absolute;*/
-/*    content: "";*/
-/*    height: 0.03vh;*/
-/*    width: 95vw;*/
-/*    bottom: 2vh;*/
-/*    left: 2vw;*/
-/*    background-color: #444444;*/
-/*    opacity: 0;*/
-/*    visibility: hidden;*/
-/*    transition: var(--transition);*/
-/*  }*/
-
-/*  .links:hover::after {*/
-/*    opacity: 1;*/
-/*    visibility: visible;*/
-/*    bottom: -2vh;*/
-/*    transition: var(--transition);*/
-/*    cursor: pointer;*/
-/*  }*/
-
-/*  .nav-links-web {*/
-/*    display: none;*/
-/*  }*/
-
 .landing-header {
   position: relative;
   overflow-x: hidden;
 }
 
-  /* LOGIN FORM */
-form {
-    /*border: 1px solid #A5A5C4;*/
-    /*background-color: white;*/
-
-  }
-
+  /* forms */
 .container {
     display: flex;
   flex-direction: column;
@@ -262,9 +123,6 @@ form {
 
 
 
-
-
-
 /* NAVBAR */
 /* Add a black background color to the top navigation */
 .topnav {
@@ -318,12 +176,14 @@ form {
 
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+      position: relative;
+      z-index:999999;
+  }
   .topnav.responsive a.icon {
     position: absolute;
     right: 0;
     top: 0;
-
   }
   .topnav.responsive a {
     float: none;
@@ -496,4 +356,39 @@ input {
 /* make images appear as buttons when hovered */
 .img_button {
   cursor:pointer;
+}
+
+
+/* AR PAGE ------------------------------------------------------------------------------------- */
+/*iframe {*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*}*/
+
+.frame-container {
+ padding:0;
+  border: 0;
+  margin:0;
+ height:100%;
+ position:fixed;
+  width:100%;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+iframe {
+    position:fixed;
+    top:10%;
+    left:0;
+    bottom:0;
+    right:0;
+    width:100%;
+    height:90%;
+    border:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    z-index:1;
 }

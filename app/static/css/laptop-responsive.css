@@ -4,23 +4,23 @@
   }
 
   .topnav {
-  background-color: #7581fa;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
+    background-color: #7581fa;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
 
-  .brand{
-      font-size: 250%;
-}
+  .brand {
+    font-size: 250%;
+  }
 
-    /* Full-width inputs */
+  /* Full-width inputs */
   input[type=text], input[type=password] {
     width: 30%;
   }
 
   .landing-page {
-      border: 80px solid transparent;
+    border: 80px solid transparent;
   }
 
   .landing-page > nav {
@@ -235,4 +235,20 @@
     font-size: 18px;
     letter-spacing: 1.3px;
   }
+
+
+  iframe {
+    position: absolute;
+    /*padding:10px;*/
+    margin: 5% auto;
+    left: 0;
+    right: 0;
+    top: 2%;
+    width: 40vh;
+    height: 60vh;
+    border: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+
 }

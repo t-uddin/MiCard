@@ -1,48 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="brand container">
+
+<div class="container">
     <iframe loading="lazy"
             id="app-frame"
             allow="microphone; camera"
-            width="350"
-            height="500"
-            src="https://playcanv.as/e/p/DzOnTCBp/"></iframe>
+            height="100%"
+            width="100%"
+            src="https://playcanv.as/e/p/DzOnTCBp/">
+    </iframe>
 </div>
-
-{#    need edit profile button, change password button, and pull in voice/account data/ edit Mi #}
-<script>
-setTimeout(func, 5000);
-
-function func() {
-    var iframe = document.getElementById("app-frame");
-    iframe.contentWindow.postMessage({
-        account_name: "Python Name",
-    }, "https://playcanv.as");
-};
-</script>
-
-{#    <script>#}
-{#    $(document).ready(function(){#}
-{#        {{ chat }}#}
-{#    });#}
-{#    </script>#}
-
-{#    <! -- Calls a function on the page load. -- >#}
-{#<element onload="myfunction_onload">#}
-{#<button type="submit" onclick='myfunction_clickevent()'>Run my Python!</button>#}
-{#<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>#}
-{#<! -- This script runs the python script on the page load -->#}
-{##}
-{#<! -- This script runs the python script when the button is clicked -->#}
-{#<script>#}
-{#    function myfunction_clickevent(){#}
-{#        $.ajax({#}
-{#            url:"/chat",#}
-{#            context: document.body});}#}
-{#</script>#}
-{#    #}
-
-
 
 {% endblock %}
 
