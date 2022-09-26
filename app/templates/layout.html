@@ -39,32 +39,34 @@
 <!--Navbar-->
     <header>
     <div class="topnav" id="myTopnav">
-        <a class="brand-nav" href="{{ url_for('main.home') }}"><h1>Mi<b>Card</b><br></h1></a>
-        <a class="nav-links" href="{{ url_for('profile_bp.get_avatar') }}">My Mi</a>
-        <a class="nav-links" href="{{ url_for('profile_bp.get_profile') }}">My Profile</a>
-        <a class="nav-links" href="{{ url_for('account_bp.logout') }}">Logout</a>
+        {% if current_user.is_authenticated %}
+            <a class="brand-nav" href="{{ url_for('main.home') }}"><h1>Mi<b>Card</b><br></h1></a>
+            <a class="nav-links" href="{{ url_for('profile_bp.get_avatar') }}">My Mi</a>
+            <a class="nav-links" href="{{ url_for('profile_bp.get_profile') }}">My Profile</a>
+            <a class="nav-links" href="{{ url_for('account_bp.logout') }}">Logout</a>
+        {% else %}
+            <a class="brand-nav" href="{{ url_for('main.home') }}"><h1>Mi<b>Card</b><br></h1></a>
+            <a class="nav-links" href="{{ url_for('account_bp.login') }}">Login</a>
+        {% endif %}
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
     </div>
     </header>
-{##}
-{#            <div class="brand">#}
-{#                <h1 class="">Mi<b>Card</b><br></h1>#}
-{#            </div>#}
-{% include 'flash_messages.html' %}
 
-<main class="container-fluid">
+    {% include 'flash_messages.html' %}
 
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            {% block content %}
-            {% endblock %}
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-md-2"></div>
         </div>
-        <div class="col-md-2"></div>
-    </div>
-</main>
+    </main>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/../static/js/navbar.js"></script>
     <script src="/../static/js/profile_forms.js"></script>
@@ -72,9 +74,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-        <footer class="small text-center text-muted">
+    <footer class="small text-center text-muted">
 {#            A UCL IXN project in collaboration with <a href="https://www.imdb.com/interfaces/">IBM</a>.#}
-        </footer>
+    </footer>
 
 </body>
 </html>

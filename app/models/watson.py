@@ -1,7 +1,6 @@
 from ibm_watson import AssistantV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from environment import assistant_api_key, assistant_id, assistant_api_url
-from controllers.profile_controller import Profile
 
 
 class WatsonAssistant:
@@ -38,9 +37,10 @@ class WatsonAssistant:
 
         try:
             answer = response["output"]["generic"][0]["text"]
+
         except Exception as e:
-            print(response)
             answer = "Sorry, I did not understand, could you rephrase your question?"
+
         return answer
 
 

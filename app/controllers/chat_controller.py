@@ -11,15 +11,15 @@ chat_bp = Blueprint('chat_bp', __name__)
 
 @chat_bp.route('/ar2/<account_id>/', methods=["GET"])
 def render_chat(account_id):
-    global card_id
-    card_id = account_id
+    global CARD_ID
+    CARD_ID = account_id
     return render_template('ar-iframe.html')
 
 
 @chat_bp.route('/start/', methods=["GET"])
 def create_session():
     # get card profile data
-    profile = Profile.get(card_id)
+    profile = Profile.get(CARD_ID)
     avatar_id = profile['avatar_id']
 
     global voice
@@ -36,7 +36,7 @@ def create_session():
     profile['treatments'] = Profile.format_list(profile['treatments'])
 
     # get card account data
-    account = Account.id_get(card_id)
+    account = Account.id_get(CARD_ID)
     account_name = (account['forename'] + " " + account['surname'])
 
     # set up new watson assistant session
@@ -45,16 +45,14 @@ def create_session():
 
     # send card profile data as context variables to session
     card_assistant.send_context(profile, session)
-    WatsonAssistant.assistants[card_id] = card_assistant
-    print(card_assistant)
-    print(session)
+    WatsonAssistant.assistants[CARD_ID] = card_assistant
 
     # send required data to AR app
     profile = {
         'session': session,
         'account_name': account_name,
         'avatar_id': avatar_id,
-        'card_id': card_id
+        'card_id': CARD_ID
     }
 
     return jsonify(profile)  # serialize and use JSON headers
@@ -70,7 +68,7 @@ def process_input():
 
     # get response from Watson Assistant
     resp = WatsonAssistant().send_message(text, session)
-    print("response: ", resp)
+    print("Response: ", resp)
 
     # if email requested trigger email app opening
     send_email = None
@@ -87,8 +85,6 @@ def process_input():
         'email': send_email
     }
 
-    print("data:", data)
-
     return data
 
 
@@ -100,13 +96,6 @@ def clear_audio():
 
     if os.path.exists(audio_path):
         os.remove(audio_path)
-        print("deleted")
         return "Deleted"
     else:
-        print("not deleted")
         return "No audio"
-
-
-# if __name__ == '__main__':
-#     cardid = "62e6f4e8d1d8472cf1002c40"
-#     converse()

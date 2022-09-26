@@ -1,6 +1,6 @@
-from flask import render_template, redirect, url_for, request, flash, Blueprint
+from flask import render_template, Blueprint
 from flask_login import login_required, current_user
-from forms import editProfileForm, CreateProfileForm
+from forms import CreateProfileForm
 
 main = Blueprint('main', __name__)
 
@@ -19,12 +19,6 @@ def home():
     return render_template('home.html')
 
 
-@main.route('/create-profile')
-@login_required
-def render_create_profile():
-    return render_template('create_profile.html')
-
-
 @main.route('/profile-register')
 @login_required
 def render_register_profile():
@@ -39,12 +33,8 @@ def render_create_avatar():
 
 # @main.route('/ar/')
 # def render_ar():
-#     return redirect(url_for('static', filename='ar_app/index.html', title="HELLOOO"))
+#     return redirect(url_for('static', filename='ar_app/index.html'))
 
-# @main.route('/ar2/')
-# def render_ar2():
-#     return redirect(url_for('static', filename='ar_app2/index.html'))
-#
 
 # @main.route('/ar-frame/')
 # def render_ar_iframe():

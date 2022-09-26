@@ -4,10 +4,9 @@ from mongoengine import (
     IntField,
     ListField,
     StringField,
-    ReferenceField,
-    BooleanField
+    ReferenceField
 )
-from .account import Account
+
 
 class Profile(Document):
     account = ReferenceField("Account", required=True)
@@ -30,7 +29,6 @@ class Profile(Document):
     avatar_id = StringField()
     meta = {"collection": "profiles"}
 
-
     def to_dict(self):
         # convert mongoengine lists to python lists
         self.specialisms_list = list.copy(self.specialisms)
@@ -40,25 +38,25 @@ class Profile(Document):
         self.treatments_list = list.copy(self.treatments)
 
         return {
-                "id": str(self.id),
-                "contact_email": self.work_email,
-                "job_title": self.job_title,
-                "phone": self.phone,
-                "field": self.field,
-                "specialisms": self.specialisms_list,
-                "certifications": self.certifications_list,
-                "education": self.education_list,
-                "working_hours": self.working_hours,
-                "location": self.location,
-                "bio": self.bio,
-                "interests": self.interests_list,
-                "exp_years": self.years_experience,
-                "cons_fee": self.consultation_fee,
-                "treatments": self.treatments_list,
-                "registration": self.registration,
-                "voice": self.voice,
-                "avatar_id": self.avatar_id
-            }
+            "id": str(self.id),
+            "contact_email": self.work_email,
+            "job_title": self.job_title,
+            "phone": self.phone,
+            "field": self.field,
+            "specialisms": self.specialisms_list,
+            "certifications": self.certifications_list,
+            "education": self.education_list,
+            "working_hours": self.working_hours,
+            "location": self.location,
+            "bio": self.bio,
+            "interests": self.interests_list,
+            "exp_years": self.years_experience,
+            "cons_fee": self.consultation_fee,
+            "treatments": self.treatments_list,
+            "registration": self.registration,
+            "voice": self.voice,
+            "avatar_id": self.avatar_id
+        }
 
     @classmethod
     def get(cls, account_id):
@@ -85,21 +83,7 @@ class Profile(Document):
         '''converts lists to natural-language string'''
         if len(list) > 1:
             list.insert(-1, 'and')
+
         string = ', '.join(map(str, list))
-        # print(string)
+
         return string
-
-    # def store(new_profile):
-    #     ''' Takes a Profile object and saves to db '''
-    #     try:
-    #         new_profile.save()
-    #         return "Success"
-    #     except Exception as e:
-    #         return e
-
-
-    # def update(userId):
-    #     ...
-
-    # def delete(userId):
-    #     ...

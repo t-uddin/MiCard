@@ -4,35 +4,7 @@ from flask_login import login_required, current_user
 from forms import CreateProfileForm
 from qrcode import QRCode
 
-
 profile_bp = Blueprint('profile_bp', __name__)
-
-#
-# @profile_bp.route('/profile-save', methods=['POST'])
-# @login_required
-# def add_profile():
-#     try:
-#         profile = Profile(
-#             work_email="test@hotmail.com",
-#             job_title="test",
-#             phone="test",
-#             field="test",
-#             specialisms=["test", "test", "test", "test"],
-#             certifications=["test", "test"],
-#             education=["test"],
-#             working_hours="test",
-#             location="test",
-#             bio="test",
-#             registration="test",
-#             interests=["test", "test"],
-#             years_experience=13,
-#             consultation_fee="0",
-#             voice="Male")
-#         profile.save()
-#         # store(profile)
-#         return
-#     except Exception as e:
-#         return ("Error: ", e)
 
 
 @profile_bp.route('/profile/', methods=['GET'])
@@ -44,7 +16,7 @@ def get_profile():
         return render_template('profile.html', profile=profile)
 
     except Exception as e:
-        return ("Error: ", e)
+        return "Error: ", e
 
 
 @profile_bp.route('/avatar/', methods=['GET'])
@@ -56,7 +28,7 @@ def get_avatar():
         return render_template('avatar.html', profile=profile)
 
     except Exception as e:
-        return ("Error: ", e)
+        return "Error: ", e
 
 
 def get_raw(account_id):
@@ -128,68 +100,6 @@ def get_edit_profile():
         return render_template("edit_profile.html", profile=profile)
 
 
-
-@profile_bp.route('/profile-create/', methods=['GET', 'POST'])
-@login_required
-def get_create_profile():
-    account_id = current_user.id
-
-    if request.method == "POST":
-        # get form data
-        bio = (request.form.get("new_bio")).strip()
-        work_email = request.form.get("new_email")
-        job_title = request.form.get("new_title")
-        phone = request.form.get("new_phone")
-        working_hours = request.form.get("new_hours")
-        location = request.form.get("new_location")
-        field = request.form.get("new_field")
-        registration = request.form.get("new_registration")
-        years_experience = request.form.get("new_years")
-        consultation_fee = request.form.get("new_fee")
-        specialisms = request.form.getlist("new_specialisms")
-        treatments = request.form.getlist("new_treatments")
-        certifications = request.form.getlist("new_certifications")
-        education = request.form.getlist("new_education")
-        interests = request.form.getlist("new_interests")
-
-        # remove empty list items
-        specialisms = list(filter(len, specialisms))
-        treatments = list(filter(len, treatments))
-        certifications = list(filter(len, certifications))
-        education = list(filter(len, education))
-        interests = list(filter(len, interests))
-
-        # create and save profile object
-
-        profile = Profile(
-            account=account_id,
-            bio=bio,
-            work_email=work_email,
-            job_title=job_title,
-            phone=phone,
-            working_hours=working_hours,
-            location=location,
-            field=field,
-            registration=registration,
-            years_experience=years_experience,
-            consultation_fee=consultation_fee,
-            specialisms=specialisms,
-            treatments=treatments,
-            certifications=certifications,
-            education=education,
-            interests=interests
-        )
-
-        # update user
-        profile.save()
-
-        # redirect to profile page
-        return redirect(url_for('profile_bp.get_profile'))
-
-    else:
-        return redirect(url_for('main.render_create_avatar'))
-
-
 @profile_bp.route('/profile-register/', methods=['GET', 'POST'])
 @login_required
 def get_register_profile():
@@ -197,7 +107,6 @@ def get_register_profile():
     form = CreateProfileForm()
 
     if request.method == "POST":
-
         if form.validate_on_submit():
             # gather form list data
             specialisms = request.form.getlist("specialisms")
@@ -233,12 +142,10 @@ def get_register_profile():
             return redirect(url_for('main.render_create_avatar'))
 
         else:
-            print(str(form.errors))
-            return redirect(url_for("profile_bp.get_register_profile"))
+            return redirect(url_for("main.render_register_profile"))
 
     else:
         return render_template(url_for('main.render_register_profile'), form=form)
-
 
 
 @profile_bp.route('/avatar-create/', methods=['GET', 'POST'])

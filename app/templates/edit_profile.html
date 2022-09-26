@@ -89,9 +89,7 @@
             {% else %}
                 {% for treament in profile.treatments %}
                     <div id="treatments">
-                    <input class="form-control" name="new_treatments" value="{{ treatment }}" type="text">
-    {#                TODO: delete and add buttons#}
-    {#                TODO: edge case when they dont have anything#}
+                        <input class="form-control" name="new_treatments" value="{{ treatment }}" type="text">
                     </div>
                 {% endfor %}
             {% endif %}
@@ -113,8 +111,6 @@
           {% for certification in profile.certifications %}
               <div id="certifications">
                 <input class="form-control" name="new_certifications" value="{{ certification }}" type="text">
-{#                TODO: delete and add buttons#}
-{#                TODO: edge case when they dont have anything#}
               </div>
 
 
@@ -135,9 +131,7 @@
               {% for item in profile.education %}
                   <div id="education">
                       <input class="form-control" name="new_education" value="{{ item }}" type="text" size="500">
-    {#                TODO: delete and add buttons#}
-    {#                TODO: edge case when they dont have anything#}
-                    </div>
+                  </div>
             {% endfor %}
                       {% endif %}
 
@@ -156,8 +150,6 @@
         {% for interest in profile.interests %}
             <div id="interests">
             <input class="form-control" name="new_interests" value="{{ interest }}" type="text">
-{#                TODO: delete and add buttons#}
-{#                TODO: edge case when they dont have anything#}
             </div>
         {% endfor %}
                       {% endif %}
@@ -165,10 +157,10 @@
                <div class="new_interests"></div>
               <img class="img_button" src="../static/img/add.png" onclick="addInterest();" />
           </div>
-    <br>
-    <br>
+          <br>
+          <br>
 
-        <button class="btn btn-info btn-lg" type="submit">Save Changes</button>
+          <button class="btn btn-info btn-lg" type="submit">Save Changes</button>
       </form>
 
 </div>

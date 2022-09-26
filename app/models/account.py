@@ -1,15 +1,11 @@
 from mongoengine import (
     Document,
-    EmailField,
-    IntField,
-    ListField,
     StringField,
-    ReferenceField,
-    BooleanField
 )
 from config import login_manager
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -26,18 +22,16 @@ class Account(Document, UserMixin):
 
     def to_dict(self):
         return {
-                "id": str(self.id),
-                "email": self.email,
-                "password_hash": self.password_hash,
-                "forename": self.forename,
-                "surname": self.surname
-            }
-
+            "id": str(self.id),
+            "email": self.email,
+            "password_hash": self.password_hash,
+            "forename": self.forename,
+            "surname": self.surname
+        }
 
     def check_password(self, password):
         """Checks that the pw provided hashes to the stored pw hash value"""
         return check_password_hash(self.password_hash, password)
-
 
     @classmethod
     def get(cls, email):
@@ -56,4 +50,3 @@ class Account(Document, UserMixin):
 
         except Exception as e:
             return e
-

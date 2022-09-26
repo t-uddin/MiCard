@@ -1,4 +1,3 @@
-import json
 from ibm_watson import SpeechToTextV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from environment import stt_api_key, stt_api_url
@@ -21,8 +20,6 @@ class SpeechToText:
             inactivity_timeout=10
         ).get_result()
 
-
-
         try:
             text = speech_recognition_results['results'][0]["alternatives"][0]["transcript"]
 
@@ -31,4 +28,3 @@ class SpeechToText:
 
         finally:
             return text
-
