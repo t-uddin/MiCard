@@ -5,25 +5,6 @@ import certifi
 from environment import mongo_host, secret_key
 from flask_cors import CORS, cross_origin
 
-# from werkzeug.local import LocalProxy
-# import bson
-# from routes.user_bp import user_bp
-
-# app = Flask(__name__)
-# app.config["SECRET_KEY"] = "d18e4f677ec08636a373abcd1234"
-# app.config["MONGO_URI"] = "mongodb+srv://mongo:mongo@cluster0.q3gpfnl.mongodb.net/micard?retryWrites=true&w=majority"
-#
-# # blueprints
-# app.register_blueprint(user_bp, url_prefix='/users')
-#
-# # setup db
-# mongodb_client = PyMongo(app, tlsCAFile=certifi.where())
-# db = mongodb_client.db
-# print(db)
-#
-# from app import routes
-# import app
-
 
 # connect to db
 mongoengine.connect(host=mongo_host, tlsCAFile=certifi.where())

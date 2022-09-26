@@ -62,44 +62,6 @@ class LoginForm(FlaskForm):
     )
     submit = SubmitField("Login")
 
-#
-# class SettingsForm(FlaskForm):
-#     """Allow users to update their name, username, email, and password"""
-#
-#     name = StringField(
-#         "Name", description="John Smith", validators=[Optional(), Length(max=80)],
-#     )
-#     username = StringField(
-#         "Username",
-#         description="Username",
-#         validators=[
-#             DataRequired(),
-#             unique_or_current_user_field("Username already exists."),
-#             safe_string(),
-#             Length(min=3, max=40),
-#         ],
-#     )
-#     email = StringField(
-#         "Email",
-#         description="my@email.com",
-#         validators=[
-#             DataRequired(),
-#             Email(),
-#             unique_or_current_user_field("Email is already registered."),
-#         ],
-#     )
-#     new_pass = PasswordField(
-#         "New Password",
-#         description="New password",
-#         validators=[Optional(), Length(min=8, max=30)],
-#     )
-#     pass_confirm = PasswordField(
-#         "Confirm password",
-#         description="Confirm password",
-#         validators=[Optional(), EqualTo("new_pass", message="Passwords Must Match!")],
-#     )
-#     submit = SubmitField("Update")
-
 
 class CreateProfileForm(FlaskForm):
     """Create a newly registered users profile"""
@@ -194,29 +156,5 @@ class CreateProfileForm(FlaskForm):
         description="Add an interest",
         validators=[DataRequired()]
     )
-
-    # treatments = FieldList(StringField(
-    #     "Treatments",
-    #     description="Add a treatment",
-    #     validators=[DataRequired()]
-    # ), min_entries=1)
-    #
-    # certifications = FieldList(StringField(
-    #     "Certifications",
-    #     description="Add a certification",
-    #     validators=[DataRequired()]
-    # ), min_entries=1)
-    #
-    # education = FieldList(StringField(
-    #     "Education",
-    #     description="Add education",
-    #     validators=[DataRequired()]
-    # ), min_entries=1)
-    #
-    # interests = FieldList(StringField(
-    #     "Interests",
-    #     description="Add an interest",
-    #     validators=[DataRequired()]
-    # ), min_entries=1)
 
     submit = SubmitField("Save")

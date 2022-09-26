@@ -3,7 +3,6 @@ from initialise_tests import Initialise
 from models.account import Account
 
 
-
 class AuthTest(TestCase, Initialise):
     def setUp(self):
         self.init_app()
